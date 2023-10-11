@@ -24,11 +24,10 @@ import { Review, UserType } from "./entities";
 
 export const cl = classNameFactory("vc-rdb-");
 
-export function canDeleteReview(profileId: string, review: Review) {
+export function canDeleteReview(review: Review) {
     const myId = UserStore.getCurrentUser().id;
     return (
-        myId === profileId
-        || review.sender.discordID === profileId
+        review.sender.discordID === myId
         || Auth.user?.type === UserType.Admin
     );
 }

@@ -30,7 +30,7 @@ import { DeleteButton, ReportButton } from "./MessageButton";
 import ReviewBadge from "./ReviewBadge";
 
 export default LazyComponent(() => {
-    // this is terrible, blame mantika
+    // this is terrible, blame ven
     const p = filters.byProps;
     const [
         { cozyMessage, buttons, message, buttonsInner, groupStart },
@@ -48,7 +48,7 @@ export default LazyComponent(() => {
 
     const dateFormat = new Intl.DateTimeFormat();
 
-    return function ReviewComponent({ review, refetch, profileId }: { review: Review; refetch(): void; profileId: string; }) {
+    return function ReviewComponent({ review, refetch }: { review: Review; refetch(): void; }) {
         function openModal() {
             openUserProfile(review.sender.discordID);
         }
@@ -135,7 +135,7 @@ export default LazyComponent(() => {
                         <div className={classes(buttonClasses.wrapper, buttonsInner)} >
                             <ReportButton onClick={reportRev} />
 
-                            {canDeleteReview(profileId, review) && (
+                            {canDeleteReview(review) && (
                                 <DeleteButton onClick={delReview} />
                             )}
                         </div>
