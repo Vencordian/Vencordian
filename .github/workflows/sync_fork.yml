@@ -14,7 +14,6 @@ jobs:
       - uses: tgymnich/fork-sync@v1.8
         with:
           owner: StupidityDB
-          merge_method: rebase
           ignore_fail: true
           base: main
           head: main
