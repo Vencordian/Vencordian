@@ -55,9 +55,9 @@ export default definePlugin({
 
     patches: [
         {
-            find: "disableBorderColor:!0",
+            find: "showBorder:null",
             replacement: {
-                match: /\(.{0,10}\{user:(.),setNote:.,canDM:.,.+?\}\)/,
+                match: /user:(.),setNote:.,canDM.+?\}\)/,
                 replace: "$&,$self.getReviewsComponent($1)"
             }
         }

@@ -45,11 +45,7 @@ export async function getReviews(id: string, offset = 0): Promise<Response> {
         flags: String(flags),
         offset: String(offset)
     });
-    const req = await fetch(`${API_URL}/api/reviewdb/users/${id}/reviews?${params}`, {
-        headers: {
-            "User-Agent": "VencordPlus (https://github.com/StupidityDB/VencordPlus)",
-        }
-    });
+    const req = await fetch(`${API_URL}/api/reviewdb/users/${id}/reviews?${params}`);
 
     const res = (req.status === 200)
         ? await req.json() as Response
@@ -101,7 +97,6 @@ export async function addReview(review: any): Promise<Response | null> {
         body: JSON.stringify(review),
         headers: {
             "Content-Type": "application/json",
-            "User-Agent": "VencordPlus (https://github.com/StupidityDB/VencordPlus)",
         }
     })
         .then(r => r.json())
@@ -117,7 +112,6 @@ export async function deleteReview(id: number): Promise<Response> {
         headers: new Headers({
             "Content-Type": "application/json",
             Accept: "application/json",
-            "User-Agent": "VencordPlus (https://github.com/StupidityDB/VencordPlus)",
         }),
         body: JSON.stringify({
             token: await getToken(),
@@ -131,7 +125,6 @@ export async function reportReview(id: number) {
         method: "PUT",
         headers: new Headers({
             "Content-Type": "application/json",
-            "User-Agent": "VencordPlus (https://github.com/StupidityDB/VencordPlus)",
             Accept: "application/json",
         }),
         body: JSON.stringify({
@@ -145,9 +138,6 @@ export async function reportReview(id: number) {
 
 export function getCurrentUserInfo(token: string): Promise<ReviewDBUser> {
     return fetch(API_URL + "/api/reviewdb/users", {
-        headers: {
-            "User-Agent": "VencordPlus (https://github.com/StupidityDB/VencordPlus)",
-        },
         body: JSON.stringify({ token }),
         method: "POST",
     }).then(r => r.json());
@@ -158,7 +148,6 @@ export async function readNotification(id: number) {
         method: "PATCH",
         headers: {
             "Authorization": await getToken() || "",
-            "User-Agent": "VencordPlus (https://github.com/StupidityDB/VencordPlus)",
         },
     });
 }

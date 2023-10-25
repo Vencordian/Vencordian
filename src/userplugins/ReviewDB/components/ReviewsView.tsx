@@ -28,11 +28,10 @@ import { cl } from "../utils";
 import ReviewComponent from "./ReviewComponent";
 
 
-const Editor = findByPropsLazy("start", "end", "addMark");
-const Transform = findByPropsLazy("unwrapNodes");
-const InputTypes = findByPropsLazy("VOICE_CHANNEL_STATUS", "SIDEBAR");
+const Slate = findByPropsLazy("Editor", "Transforms");
+const InputTypes = findByPropsLazy("ChatInputTypes");
 
-const InputComponent = LazyComponent(() => find(m => m?.type?.render?.toString().includes("CHANNEL_TEXT_AREA).AnalyticsLocationProvider")));
+const InputComponent = LazyComponent(() => find(m => m.default?.type?.render?.toString().includes("default.CHANNEL_TEXT_AREA")).default);
 
 interface UserProps {
     discordId: string;
@@ -121,7 +120,7 @@ function ReviewList({ refetch, reviews, hideOwnReview }: { refetch(): void; revi
 export function ReviewsInputComponent({ discordId, isAuthor, refetch, name }: { discordId: string, name: string; isAuthor: boolean; refetch(): void; }) {
     const { token } = Auth;
     const editorRef = useRef<any>(null);
-    const inputType = InputTypes.FORM;
+    const inputType = InputTypes.ChatInputTypes.FORM;
     inputType.disableAutoFocus = true;
 
     const channel = {
@@ -171,6 +170,7 @@ export function ReviewsInputComponent({ discordId, isAuthor, refetch, name }: { 
                                 refetch();
 
                                 const slateEditor = editorRef.current.ref.current.getSlateEditor();
+                                const { Editor, Transform } = Slate;
 
                                 // clear editor
                                 Transform.delete(slateEditor, {
