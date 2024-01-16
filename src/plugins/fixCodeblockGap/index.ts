@@ -1,6 +1,6 @@
 /*
  * Vencord, a modification for Discord's desktop app
- * Copyright (c) 2022 Vendicated and contributors
+ * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,18 +16,20 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import { classNameFactory } from "@api/Styles";
-import { UserStore } from "@webpack/common";
+import { Devs } from "@utils/constants";
+import definePlugin from "@utils/types";
 
-import { Auth } from "./auth";
-import { Review, UserType } from "./entities";
-
-export const cl = classNameFactory("vc-rdb-");
-
-export function canDeleteReview(review: Review) {
-    const myId = UserStore.getCurrentUser().id;
-    return (
-        review.sender.discordID === myId
-        || Auth.user?.type === UserType.Admin
-    );
-}
+export default definePlugin({
+    name: "FixCodeblockGap",
+    description: "Removes the gap between codeblocks and text below it",
+    authors: [Devs.Grzesiek11],
+    patches: [
+        {
+            find: ".default.Messages.DELETED_ROLE_PLACEHOLDER",
+            replacement: {
+                match: String.raw`/^${"```"}(?:([a-z0-9_+\-.#]+?)\n)?\n*([^\n][^]*?)\n*${"```"}`,
+                replace: "$&\\n?",
+            },
+        },
+    ],
+});

@@ -28,8 +28,8 @@ import { cl } from "../utils";
 import ReviewComponent from "./ReviewComponent";
 
 
-const Slate = findByPropsLazy("Editor", "Transforms");
-const InputTypes = findByPropsLazy("ChatInputTypes");
+const { Editor, Transforms } = findByPropsLazy("Editor", "Transforms");
+const { ChatInputTypes } = findByPropsLazy("ChatInputTypes");
 
 const InputComponent = LazyComponent(() => find(m => m.default?.type?.render?.toString().includes("default.CHANNEL_TEXT_AREA")).default);
 
@@ -79,6 +79,7 @@ export default function ReviewsView({
                 refetch={refetch}
                 reviews={reviewData!.reviews}
                 hideOwnReview={hideOwnReview}
+                profileId={discordId}
             />
 
             {showInput && (
@@ -93,7 +94,7 @@ export default function ReviewsView({
     );
 }
 
-function ReviewList({ refetch, reviews, hideOwnReview }: { refetch(): void; reviews: Review[]; hideOwnReview: boolean; }) {
+function ReviewList({ refetch, reviews, hideOwnReview, profileId }: { refetch(): void; reviews: Review[]; hideOwnReview: boolean; profileId: string; }) {
     const myId = UserStore.getCurrentUser().id;
 
     return (
@@ -104,6 +105,7 @@ function ReviewList({ refetch, reviews, hideOwnReview }: { refetch(): void; revi
                     key={review.id}
                     review={review}
                     refetch={refetch}
+                    profileId={profileId}
                 />
             )}
 
@@ -120,7 +122,7 @@ function ReviewList({ refetch, reviews, hideOwnReview }: { refetch(): void; revi
 export function ReviewsInputComponent({ discordId, isAuthor, refetch, name }: { discordId: string, name: string; isAuthor: boolean; refetch(): void; }) {
     const { token } = Auth;
     const editorRef = useRef<any>(null);
-    const inputType = InputTypes.ChatInputTypes.FORM;
+    const inputType = ChatInputTypes.FORM;
     inputType.disableAutoFocus = true;
 
     const channel = {
@@ -170,10 +172,9 @@ export function ReviewsInputComponent({ discordId, isAuthor, refetch, name }: { 
                                 refetch();
 
                                 const slateEditor = editorRef.current.ref.current.getSlateEditor();
-                                const { Editor, Transform } = Slate;
 
                                 // clear editor
-                                Transform.delete(slateEditor, {
+                                Transforms.delete(slateEditor, {
                                     at: {
                                         anchor: Editor.start(slateEditor, []),
                                         focus: Editor.end(slateEditor, []),
