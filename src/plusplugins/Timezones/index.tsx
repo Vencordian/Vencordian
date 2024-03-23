@@ -5,7 +5,7 @@
  */
 
 import * as DataStore from "@api/DataStore";
-import { Devs, VENCORD_USER_AGENT } from "@utils/constants";
+import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { findByPropsLazy } from "@webpack";
 import { React, SearchableSelect, Text, Toasts, UserStore } from "@webpack/common";
@@ -16,6 +16,7 @@ const classNames = findByPropsLazy("customStatusSection");
 
 
 import { CogWheel, DeleteIcon } from "@components/Icons";
+import { VENCORD_USER_AGENT } from "@shared/vencordUserAgent";
 import { makeLazy } from "@utils/lazy";
 import { classes } from "@utils/misc";
 import { useForceUpdater } from "@utils/react";

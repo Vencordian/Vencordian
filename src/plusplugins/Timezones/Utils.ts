@@ -5,10 +5,11 @@
  */
 
 import * as DataStore from "@api/DataStore";
-import { VENCORD_USER_AGENT } from "@utils/constants";
-import { debounce } from "@utils/debounce";
 import { findStoreLazy } from "@webpack";
 export const DATASTORE_KEY = "plugins.Timezones.savedTimezones";
+
+import { debounce } from "@shared/debounce";
+import { VENCORD_USER_AGENT } from "@shared/vencordUserAgent";
 
 import { CustomTimezonePreference } from "./settings";
 
