@@ -19,7 +19,7 @@ export let userWhitelist: string[] = [];
 export const DATASTORE_KEY = "DnDBypass_whitelistedUsers";
 const SelfPresenceStore = findStoreLazy("SelfPresenceStore");
 
-const userPopoutPatch: NavContextMenuPatchCallback = (children, props: { user: User, onClose(): void; }) => {
+const userContextMenuPatch: NavContextMenuPatchCallback = (children, props: { user: User, onClose(): void; }) => {
     children.push(
         <Menu.MenuSeparator />,
         <Menu.MenuItem
@@ -58,7 +58,7 @@ export default definePlugin({
         }
     ],
     settings,
-    contextMenus: { "user-context": userPopoutPatch },
+    contextMenus: { "user-context": userContextMenuPatch },
 
     shouldNotify(author: User) {
         console.log(author);
