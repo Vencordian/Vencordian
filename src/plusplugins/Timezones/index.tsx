@@ -222,7 +222,6 @@ export default definePlugin({
     },
 
     getTimezonesComponent: ({ message }: { message: Message; }) => {
-        console.log(message);
 
         const { showTimezonesInChat, preference } = settings.use(["preference", "showTimezonesInChat"]);
         const [timezone, setTimezone] = React.useState<string | undefined>();

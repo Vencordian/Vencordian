@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { addContextMenuPatch, NavContextMenuPatchCallback, removeContextMenuPatch } from "@api/ContextMenu";
+import { NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { DataStore } from "@api/index";
 import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
@@ -19,8 +19,9 @@ export let userWhitelist: string[] = [];
 export const DATASTORE_KEY = "DnDBypass_whitelistedUsers";
 const SelfPresenceStore = findStoreLazy("SelfPresenceStore");
 
-const userPopoutPatch: NavContextMenuPatchCallback = (children, props: { user: User, onClose(): void; }) => () => {
+const userContextMenuPatch: NavContextMenuPatchCallback = (children, props: { user: User, onClose(): void; }) => {
     children.push(
+        <Menu.MenuSeparator />,
         <Menu.MenuItem
             label={userWhitelist.includes(props.user.id) ?
                 "Remove user from DND whitelist" : "Add user to DND whitelist"}
@@ -57,6 +58,7 @@ export default definePlugin({
         }
     ],
     settings,
+    contextMenus: { "user-context": userContextMenuPatch },
 
     shouldNotify(author: User) {
         console.log(author);
@@ -67,12 +69,9 @@ export default definePlugin({
     },
 
     async start() {
-        addContextMenuPatch("user-context", userPopoutPatch);
         userWhitelist = await DataStore.get(DATASTORE_KEY) ?? [];
     },
 
-    stop() {
-        removeContextMenuPatch("user-context", userPopoutPatch);
-    }
+    stop() { }
 
 });
