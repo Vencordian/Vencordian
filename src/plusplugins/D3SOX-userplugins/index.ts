@@ -4,17 +4,20 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-export const VERSION = "1.1.1";
+import { getNative } from "./shared/native";
 
-// Thanks to Kyuuhachi for the original idea and code
+// needs to stay here to notify users of the old version
+export const VERSION = "2.0.0";
+
+export const Native = getNative();
 
 import Plugins from "~plugins";
 
 const PLUGINS = [
-    require("./d3soxUpdateNotifier").default,
+    require("./d3soxUpdater").default,
     require("./followUser").default,
     require("./ignoreTerms").default,
-    require("./memberListActivities").default,
+    require("./betterActivities").default,
     require("./notifyUserChanges").default,
     require("./screenShareStreamerMode").default,
     require("./serverProfilesToolbox").default,
