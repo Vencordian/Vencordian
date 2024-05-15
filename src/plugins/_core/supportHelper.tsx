@@ -148,7 +148,7 @@ ${makeCodeblock(enabledPlugins.join(", "))}
                             If you are experiencing issues, please contact your package maintainer for support instead.
                         </Forms.FormText>
                     </div>,
-                    onCloseCallback: ()
+                    onCloseCallback: () => {}
                 });
             }
 
@@ -162,7 +162,7 @@ ${makeCodeblock(enabledPlugins.join(", "))}
                             If you are experiencing issues, please contact your package maintainer for support instead.
                         </Forms.FormText>
                     </div>,
-                    onCloseCallback: ()
+                    onCloseCallback: () => {}
                 });
             }
         }
