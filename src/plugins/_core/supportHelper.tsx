@@ -26,7 +26,7 @@ import { relaunch } from "@utils/native";
 import { makeCodeblock } from "@utils/text";
 import definePlugin from "@utils/types";
 import { isOutdated, update } from "@utils/updater";
-import { Alerts, Card, ChannelStore, Forms, GuildMemberStore, NavigationRouter, Parser, RelationshipStore, UserStore } from "@webpack/common";
+import { Alerts, Card, ChannelStore, Forms, GuildMemberStore, Parser, RelationshipStore, UserStore } from "@webpack/common";
 
 import gitHash from "~git-hash";
 import plugins from "~plugins";
@@ -121,7 +121,7 @@ ${makeCodeblock(enabledPlugins.join(", "))}
                     body: <div>
                         <Forms.FormText>You are using an outdated version of Vencord! Chances are, your issue is already fixed.</Forms.FormText>
                         <Forms.FormText className={Margins.top8}>
-                            Please first update before asking for support!
+                            Please update before asking for support!
                         </Forms.FormText>
                     </div>,
                     onCancel: () => openUpdaterModal!(),
@@ -145,7 +145,7 @@ ${makeCodeblock(enabledPlugins.join(", "))}
                     body: <div>
                         <Forms.FormText>You are using an externally updated Vencord version, which we do not provide support for!</Forms.FormText>
                         <Forms.FormText className={Margins.top8}>
-                            If you are experiencing issues, please contact your package maintainer for support instead.
+                            If you are experiencing issues, please contact your <Link href="https://github.com/RobinRMC/VencordPlus">package maintainer</Link> for support instead.
                         </Forms.FormText>
                     </div>,
                     onCloseCallback: () => {}
@@ -159,7 +159,7 @@ ${makeCodeblock(enabledPlugins.join(", "))}
                     body: <div>
                         <Forms.FormText>You are using a fork of Vencord, which we do not provide support for!</Forms.FormText>
                         <Forms.FormText className={Margins.top8}>
-                            If you are experiencing issues, please contact your package maintainer for support instead.
+                            If you are experiencing issues, please contact your <Link href="https://github.com/RobinRMC/VencordPlus">package maintainer</Link> for support instead.
                         </Forms.FormText>
                     </div>,
                     onCloseCallback: () => {}
