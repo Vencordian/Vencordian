@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name            Vencord
+// @name            VencordPlus
 // @description     A Discord client mod - Web version
 // @version         %version%
 // @author          Vendicated (https://github.com/Vendicated)
 // @namespace       https://github.com/Vendicated/Vencord
-// @supportURL      https://github.com/Vendicated/Vencord
+// @supportURL      https://github.com/RobinRMC/VencordPlus
 // @license         GPL-3.0
 // @match           *://*.discord.com/*
 // @grant           GM_xmlhttpRequest

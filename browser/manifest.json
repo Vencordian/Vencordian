@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "minimum_chrome_version": "91",
 
-    "name": "Vencord Web",
+    "name": "VencordPlus Web",
     "description": "The cutest Discord mod now in your browser",
     "author": "Vendicated",
     "homepage_url": "https://github.com/Vendicated/Vencord",

@@ -218,7 +218,7 @@ export default definePlugin({
 
         return (
             <>
-                <Component {...props}>Vencord {gitHash}{additionalInfo}</Component>
+                <Component {...props}>VencordPlus {gitHash}{additionalInfo}</Component>
                 {electronVersion && <Component {...props}>Electron {electronVersion}</Component>}
                 {chromiumVersion && <Component {...props}>Chromium {chromiumVersion}</Component>}
             </>
