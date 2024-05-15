@@ -125,7 +125,7 @@ function ContributorModal({ user }: { user: User; }) {
                             key={p.name}
                             plugin={p}
                             disabled={p.required ?? false}
-                            onRestartNeeded={() => showToast("Restart to apply changes!")}
+                            onRestartNeeded={() => showToast("Restart your client to apply the changes!")}
                         />
                     )}
                 </div>

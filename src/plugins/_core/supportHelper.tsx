@@ -71,7 +71,7 @@ export default definePlugin({
 
             const client = (() => {
                 if (IS_DISCORD_DESKTOP) return `Discord Desktop v${DiscordNative.app.getVersion()}`;
-                if (IS_VESKTOP) return `Vesktop v${VesktopNative.app.getVersion()}`;
+                if (IS_VESKTOP) return `VesktopPlus v${VesktopNative.app.getVersion()}`;
                 if ("armcord" in window) return `ArmCord v${window.armcord.version}`;
 
                 // @ts-expect-error
@@ -85,7 +85,7 @@ export default definePlugin({
 
             const info = {
                 Vencord:
-                    `v${VERSION} • [${gitHash}](<https://github.com/Vendicated/Vencord/commit/${gitHash}>)` +
+                    `v${VERSION} • [${gitHash}](<https://github.com/RobinRMC/VencordPlus/commit/${gitHash}>)` +
                     `${settings.additionalInfo} - ${Intl.DateTimeFormat("en-GB", { dateStyle: "medium" }).format(BUILD_TIMESTAMP)}`,
                 Client: `${RELEASE_CHANNEL} ~ ${client}`,
                 Platform: window.navigator.platform
@@ -145,11 +145,10 @@ ${makeCodeblock(enabledPlugins.join(", "))}
                     body: <div>
                         <Forms.FormText>You are using an externally updated Vencord version, which we do not provide support for!</Forms.FormText>
                         <Forms.FormText className={Margins.top8}>
-                            Please either switch to an <Link href="https://vencord.dev/download">officially supported version of Vencord</Link>, or
-                            contact your package maintainer for support instead.
+                            If you are experiencing issues, please contact your package maintainer for support instead.
                         </Forms.FormText>
                     </div>,
-                    onCloseCallback: () => setTimeout(() => NavigationRouter.back(), 50)
+                    onCloseCallback: ()
                 });
             }
 
@@ -160,11 +159,10 @@ ${makeCodeblock(enabledPlugins.join(", "))}
                     body: <div>
                         <Forms.FormText>You are using a fork of Vencord, which we do not provide support for!</Forms.FormText>
                         <Forms.FormText className={Margins.top8}>
-                            Please either switch to an <Link href="https://vencord.dev/download">officially supported version of Vencord</Link>, or
-                            contact your package maintainer for support instead.
+                            If you are experiencing issues, please contact your package maintainer for support instead.
                         </Forms.FormText>
                     </div>,
-                    onCloseCallback: () => setTimeout(() => NavigationRouter.back(), 50)
+                    onCloseCallback: ()
                 });
             }
         }
