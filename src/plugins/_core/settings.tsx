@@ -215,7 +215,7 @@ export default definePlugin({
     get additionalInfo() {
         if (IS_DEV) return " (Dev)";
         if (IS_WEB) return " (Web)";
-        if (IS_VESKTOP) return ` (VesktopPlus v${VesktopNative.app.getVersion()})`;
+        if (IS_VESKTOP) return ` (Vesktop+ v${VesktopNative.app.getVersion()})`;
         if (IS_STANDALONE) return " (Standalone)";
         return "";
     },
@@ -223,7 +223,7 @@ export default definePlugin({
     getInfoRows() {
         const { electronVersion, chromiumVersion, additionalInfo } = this;
 
-        const rows = [`VencordPlus ${gitHash}${additionalInfo}`];
+        const rows = [`Vencord+ ${gitHash}${additionalInfo}`];
 
         if (electronVersion) rows.push(`Electron ${electronVersion}`);
         if (chromiumVersion) rows.push(`Chromium ${chromiumVersion}`);
