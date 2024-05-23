@@ -77,7 +77,7 @@ const updateBadgesForAllUsers = () => {
                         description: badge.description,
                         props: {
                             style: {
-                                borderRadius: "50%",
+                                borderRadius: "15%",
                                 transform: "scale(0.9)"
                             }
                         },
@@ -107,9 +107,9 @@ const updateBadgesForAllUsers = () => {
                                             <div style={{ textAlign: "center" }}>
                                                 <img
                                                     role="presentation"
-                                                    src="https://cdn.discordapp.com/emojis/1217777696650563614.webp"
+                                                    src="https://i.imgur.com/sYPvIoc.gif"
                                                     alt=""
-                                                    style={{ margin: "auto", display: "block" }}
+                                                    style={{ margin: "auto", display: "block", width: "120px" }}
                                                 />
                                             </div>
                                             <div style={{ padding: "0.5em", textAlign: "center" }}>
@@ -236,7 +236,7 @@ const settings = definePluginSettings({
         restartNeeded: true
     },
     nitroFirst: {
-        description: "Banner/Avatar to use if both Nitro and fakeProfile Banner/Avatar are present",
+        description: "Avatars and banners that you want to prioritize displaying:",
         type: OptionType.SELECT,
         options: [
             { label: "Nitro", value: true, default: true },
@@ -307,9 +307,9 @@ const openModalOnClick = () => {
                     <div style={{ textAlign: "center" }}>
                         <img
                             role="presentation"
-                            src="https://cdn.discordapp.com/emojis/1217777696650563614.webp"
+                            src="https://i.imgur.com/sYPvIoc.gif"
                             alt=""
-                            style={{ margin: "auto", display: "block" }}
+                            style={{ margin: "auto", display: "block", width: "120px" }}
                         />
                     </div>
                     <div style={{ padding: "0.5em", textAlign: "center" }}>
