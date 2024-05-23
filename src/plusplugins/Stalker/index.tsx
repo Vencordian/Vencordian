@@ -13,14 +13,9 @@ async function importLoggedMessages() {
     let module;
     try {
         // @ts-ignore
-        module = await import("plugins/vc-message-logger-enhanced/LoggedMessageManager");
+        module = await import("plusplugins/MessageLoggerEnhanced/LoggedMessageManager");
     } catch {
-        try {
-            // @ts-ignore
-            module = await import("userplugins/vc-message-logger-enhanced/LoggedMessageManager");
-        } catch {
-            console.error("Failed to load loggedMessages from both 'plugins' and 'userplugins' directories.");
-        }
+        console.error("Failed to load loggedMessages from 'plusplugins' directory.");
     }
     return module ? module.loggedMessages : null;
 }
