@@ -18,17 +18,17 @@ const execFile = promisify(cpExecFile);
 const isFlatpak = process.platform === "linux" && Boolean(process.env.FLATPAK_ID?.includes("discordapp") || process.env.FLATPAK_ID?.includes("Discord"));
 if (process.platform === "darwin") process.env.PATH = `/usr/local/bin:${process.env.PATH}`;
 
-const VENCORD_USER_PLUGIN_DIR = join(__dirname, "..", "src", "userplugins");
+const VENCORD_PLUS_PLUGIN_DIR = join(__dirname, "..", "src", "plusplugins");
 const getCwd = memoize(async () => {
-    const dirs = await readdir(VENCORD_USER_PLUGIN_DIR, { withFileTypes: true });
+    const dirs = await readdir(VENCORD_PLUS_PLUGIN_DIR, { withFileTypes: true });
 
     for (const dir of dirs) {
         if (!dir.isDirectory()) continue;
 
-        const pluginDir = join(VENCORD_USER_PLUGIN_DIR, dir.name);
+        const pluginDir = join(VENCORD_PLUS_PLUGIN_DIR, dir.name);
         const files = await readdir(pluginDir);
 
-        if (files.includes("d3soxUpdater")) return join(VENCORD_USER_PLUGIN_DIR, dir.name);
+        if (files.includes("d3soxUpdater")) return join(VENCORD_PLUS_PLUGIN_DIR, dir.name);
     }
 });
 
