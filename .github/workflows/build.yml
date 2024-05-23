@@ -31,7 +31,7 @@ jobs:
                   cache: "pnpm"
 
             - name: Install dependencies
-              run: pnpm install --frozen-lockfile
+              run: pnpm install --frozen-lockfile && pnpm install buttplug
 
             - name: Build web
               run: pnpm buildWeb --standalone
