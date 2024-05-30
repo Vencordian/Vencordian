@@ -20,7 +20,7 @@ jobs:
                   cache: "pnpm"
 
             - name: Install dependencies
-              run: pnpm install --frozen-lockfile
+              run: pnpm install --frozen-lockfile && pnpm install buttplug --workspace-root && pnpm install openai --workspace-root
 
             - name: Lint & Test if desktop version compiles
               run: pnpm test
