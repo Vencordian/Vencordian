@@ -34,7 +34,7 @@ jobs:
               run: pnpm install --frozen-lockfile && pnpm install buttplug --workspace-root && pnpm install openai --workspace-root
 
             - name: Build web
-              run: pnpm buildWeb --standalone
+              run: pnpm buildWebStandalone
 
             - name: Build
               run: pnpm build --standalone
