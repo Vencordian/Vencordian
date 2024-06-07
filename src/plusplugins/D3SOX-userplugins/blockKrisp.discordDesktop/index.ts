@@ -12,11 +12,28 @@ export default definePlugin({
     description: "Prevent Krisp from loading",
     authors: [Devs.D3SOX],
     patches: [
+        // Block loading modules on Desktop
         {
             find: "Failed to load Krisp module",
             replacement: {
                 match: /await (\i).default.ensureModule\("discord_krisp"\)/,
-                replace: "throw new Error();await $1.default.ensureModule(\"discord_krisp\")"
+                replace: "throw new Error();$&"
+            }
+        },
+        // Block loading modules on Web
+        {
+            find: "krisp_browser_models",
+            replacement: {
+                match: /getKrispSDK:function\(\)\{/,
+                replace: "$&return null;"
+            }
+        },
+        // Set Krisp to not supported
+        {
+            find: "\"shouldSkipMuteUnmuteSound\"",
+            replacement: {
+                match: /isNoiseCancellationSupported\(\)\{/,
+                replace: "$&return false;"
             }
         }
     ],

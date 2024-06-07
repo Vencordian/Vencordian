@@ -26,38 +26,9 @@ const CustomizationSection = findByCodeLazy(".customizationSectionBackground");
 const cl = classNameFactory("vc-decoration-");
 
 import style from "./index.css?managed";
+import { AvatarDecoration, Colors, fakeProfileSectionProps, UserProfile, UserProfileData } from "./types";
 
 
-type Badge = {
-    asset: string;
-    description: string;
-    icon: string;
-    link?: string;
-};
-
-type DecorationData = {
-    asset: string;
-    skuId: string;
-    animated: boolean;
-};
-export interface AvatarDecoration {
-    asset: string;
-    skuId: string;
-    animated: boolean;
-}
-interface UserProfile extends User {
-    profileEffectId: string;
-    userId: string;
-    themeColors?: Array<number>;
-
-}
-interface UserProfileData {
-    profile_effect: string;
-    banner: string;
-    avatar: string;
-    badges: Badge[];
-    decoration: DecorationData;
-}
 
 
 let UsersData = {} as Record<string, UserProfileData>;
@@ -77,7 +48,7 @@ const updateBadgesForAllUsers = () => {
                         description: badge.description,
                         props: {
                             style: {
-                                borderRadius: "15%",
+                                borderRadius: "50%",
                                 transform: "scale(0.9)"
                             }
                         },
@@ -107,9 +78,9 @@ const updateBadgesForAllUsers = () => {
                                             <div style={{ textAlign: "center" }}>
                                                 <img
                                                     role="presentation"
-                                                    src="https://i.imgur.com/sYPvIoc.gif"
+                                                    src="https://cdn.discordapp.com/emojis/1217777696650563614.webp"
                                                     alt=""
-                                                    style={{ margin: "auto", display: "block", width: "120px" }}
+                                                    style={{ margin: "auto", display: "block" }}
                                                 />
                                             </div>
                                             <div style={{ padding: "0.5em", textAlign: "center" }}>
@@ -163,16 +134,9 @@ async function loadfakeProfile(noCache = false) {
 }
 
 function getUserEffect(profileId: string) {
-    const userEffect = UsersData[profileId];
-    if (userEffect) {
-        return UsersData[profileId].profile_effect || null;
-    }
-    return null;
+    return UsersData[profileId] ? UsersData[profileId].profile_effect : null;
 }
-interface Colors {
-    primary: number;
-    accent: number;
-}
+
 
 function encode(primary: number, accent: number): string {
     const message = `[#${primary.toString(16).padStart(6, "0")},#${accent.toString(16).padStart(6, "0")}]`;
@@ -236,7 +200,7 @@ const settings = definePluginSettings({
         restartNeeded: true
     },
     nitroFirst: {
-        description: "Avatars and banners that you want to prioritize displaying:",
+        description: "Banner/Avatar to use if both Nitro and fakeProfile Banner/Avatar are present",
         type: OptionType.SELECT,
         options: [
             { label: "Nitro", value: true, default: true },
@@ -251,11 +215,7 @@ const settings = definePluginSettings({
     }
 });
 
-interface fakeProfileSectionProps {
-    hideTitle?: boolean;
-    hideDivider?: boolean;
-    noMargin?: boolean;
-}
+
 function fakeProfileSection({ hideTitle = false, hideDivider = false, noMargin = false }: fakeProfileSectionProps) {
     return <CustomizationSection
         title={!hideTitle && "fakeProfile"}
@@ -307,9 +267,9 @@ const openModalOnClick = () => {
                     <div style={{ textAlign: "center" }}>
                         <img
                             role="presentation"
-                            src="https://i.imgur.com/sYPvIoc.gif"
+                            src="https://cdn.discordapp.com/emojis/1217777696650563614.webp"
                             alt=""
-                            style={{ margin: "auto", display: "block", width: "120px" }}
+                            style={{ margin: "auto", display: "block" }}
                         />
                     </div>
                     <div style={{ padding: "0.5em", textAlign: "center" }}>
@@ -349,7 +309,7 @@ const BadgeMain = ({ user, wantMargin = true, wantTopMargin = false }: { user: U
     const validBadges = UsersData[user.id]?.badges;
     if (!validBadges || validBadges.length === 0) return null;
 
-    const icons = validBadges.map((badge: Badge, index: number) => (
+    const icons = validBadges.map((badge, index) => (
         <div onClick={openModalOnClick} >
             <BadgeIcon
                 key={index}
@@ -390,7 +350,7 @@ export default definePlugin({
         id: 984015688807100419n,
     }, Devs.Alyxia, Devs.Remty, Devs.AutumnVN, Devs.pylix, Devs.TheKodeToad],
     dependencies: ["MessageDecorationsAPI"],
-    async start() {
+    start: async () => {
         enableStyle(style);
         await loadfakeProfile();
         if (settings.store.enableCustomBadges) {
@@ -422,7 +382,7 @@ export default definePlugin({
             }
         }, data.reloadInterval);
     },
-    stop() {
+    stop: () => {
         if (settings.store.showCustomBadgesinmessage) {
             removeDecoration("custom-badge");
         }
@@ -470,6 +430,19 @@ export default definePlugin({
                 {
                     match: /\?\(0,\i\.jsx\)\(\i,{type:\i,shown/,
                     replace: "&&$self.shouldShowBadge(arguments[0])$&"
+                }
+            ]
+        },
+        {
+            find: /overrideBannerSrc:\i,overrideBannerWidth:/,
+            replacement: [
+                {
+                    match: /(\i)\.premiumType/,
+                    replace: "$self.premiumHook($1)||$&"
+                },
+                {
+                    match: /function \i\((\i)\)\{/,
+                    replace: "$&$1.overrideBannerSrc=$self.useBannerHook($1);"
                 }
             ]
         },
