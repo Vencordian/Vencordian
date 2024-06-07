@@ -15,7 +15,7 @@ async function importLoggedMessages() {
         // @ts-ignore
         module = await import("plusplugins/MessageLoggerEnhanced/LoggedMessageManager");
     } catch {
-        console.error("Failed to load loggedMessages from both 'plugins' and 'userplugins' directories.");
+        console.error("Failed to load loggedMessages from 'plusplugins' directory.");
     }
     return module ? module.loggedMessages : null;
 }
