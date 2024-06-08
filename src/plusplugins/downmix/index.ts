@@ -1,8 +1,8 @@
 import { definePluginSettings } from "@api/Settings";
 import definePlugin, { OptionType } from "@utils/types";
 
-import Plugin from "../../plugins/betterMicrophone.desktop/index";
-import { addSettingsPanelButton, removeSettingsPanelButton, StereoIcon } from "../../plugins/philsPluginLibrary";
+import Plugin from "../../plusplugins/betterMicrophone.desktop/index";
+import { addSettingsPanelButton, removeSettingsPanelButton, StereoIcon } from "../../plusplugins/philsPluginLibrary";
 
 const settings = definePluginSettings({
     downmix: {
@@ -35,8 +35,8 @@ function update() {
 }
 
 export default definePlugin({
-    name: "downmix / mono output",
-    description: "forces discord to downmix voice audio to mono. useful for those pesky steweo users uwu sempai 🤮",
+    name: "Downmix / Mono Output",
+    description: "Forces Discord to downmix voice audio to mono. Useful for those pesky steweo users uwu sempai 🤮",
     dependencies: ["BetterMicrophone"],
     authors: [
         {
@@ -48,11 +48,11 @@ export default definePlugin({
     settings,
     start() {
         valueDownmix = settings.store.downmix ? "0" : "1";
-        addSettingsPanelButton({ name: "downmix", icon: StereoIcon, tooltipText: "Mono Output", onClick: downmix });
+        addSettingsPanelButton({ name: "Downmix", icon: StereoIcon, tooltipText: "Mono Output", onClick: downmix });
         update();
     },
     stop() {
-        removeSettingsPanelButton("downmix");
+        removeSettingsPanelButton("Downmix");
         update();
     },
 });

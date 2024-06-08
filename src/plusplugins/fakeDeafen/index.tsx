@@ -1,7 +1,7 @@
 import { definePluginSettings } from "@api/Settings";
 import definePlugin, { OptionType } from "@utils/types";
 
-import { addSettingsPanelButton, DeafenIcon, removeSettingsPanelButton } from "../../plugins/philsPluginLibrary";
+import { addSettingsPanelButton, DeafenIcon, removeSettingsPanelButton } from "../../plusplugins/philsPluginLibrary";
 
 export let fakeD = false;
 
@@ -37,8 +37,8 @@ const settings = definePluginSettings({
 });
 
 export default definePlugin({
-    name: "fake deafen",
-    description: "you're deafened but you're not",
+    name: "Fake Deafen",
+    description: "You're deafened, but you're not.",
     dependencies: ["PhilsPluginLibrary"],
     authors: [
         {
@@ -71,7 +71,7 @@ export default definePlugin({
 
     start() {
         addSettingsPanelButton({
-            name: "faked", icon: DeafenIcon, tooltipText: "Fake Deafen", onClick: () => {
+            name: "Faked", icon: DeafenIcon, tooltipText: "Fake Deafen", onClick: () => {
                 fakeD = !fakeD;
                 deafen();
                 setTimeout(deafen, 250);
@@ -82,6 +82,6 @@ export default definePlugin({
         });
     },
     stop() {
-        removeSettingsPanelButton("faked");
+        removeSettingsPanelButton("Faked");
     }
 });
