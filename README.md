@@ -1,8 +1,10 @@
-# VencordPlus
+# Vencord+
 
-Fork of client mod Vencord with lots of extra plugins including ReviewDB
+A fork of the Discord client mod called Vencord that adds unapproved plugins.
 
-![image](https://github.com/Vendicated/Vencord/assets/45497981/706722b1-32de-4d99-bee9-93993b504334)
+| ![image](https://github.com/Vendicated/Vencord/assets/45497981/706722b1-32de-4d99-bee9-93993b504334) |
+| :--------------------------------------------------------------------------------------------------: |
+|   A screenshot of Vencord showcasing the [Vencord theme](https://github.com/synqat/vencord-theme)    |
 
 ## Features
 
@@ -20,7 +22,29 @@ Fork of client mod Vencord with lots of extra plugins including ReviewDB
 
 ## Installing / Uninstalling
 
-[![Download and run the Installer](https://img.shields.io/github/v/release/StupidityDB/VencordPlusInstaller?label=Download%20Vencord%2B%20Installer&style=for-the-badge)](https://github.com/StupidityDB/VencordPlusInstaller#vencord-installer)
+[![Download and run the installer](https://img.shields.io/github/v/release/RobinRMC/VencordPlusInstaller?label=Download%20Vencord%2B%20Installer&style=for-the-badge)](https://github.com/RobinRMC/VencordPlusInstaller#vencord-installer)
+
+## Join the support/community server of Vencord
+
+https://discord.gg/D9uwnFnqmd
+
+## Sponsors of Vencord
+
+|     **Thanks a lot to all Vencord [sponsors](https://github.com/sponsors/Vendicated)!!**     |
+| :------------------------------------------------------------------------------------------: |
+|   [![](https://meow.vendicated.dev/sponsors.png)](https://github.com/sponsors/Vendicated)    |
+| *generated using [github-sponsor-graph](https://github.com/Vendicated/github-sponsor-graph)* |
+
+
+## Star History
+
+<a href="https://star-history.com/#RobinRMC/VencordPlus&Timeline">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=RobinRMC/VencordPlus&type=Timeline&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=RobinRMC/VencordPlus&type=Timeline" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=RobinRMC/VencordPlus&type=Timeline" />
+  </picture>
+</a>
 
 ## Disclaimer
 
@@ -32,10 +56,10 @@ Mention of it does not imply any affiliation with or endorsement by Discord Inc.
 
 Client modifications are against Discord’s Terms of Service.
 
-However, Discord is pretty indifferent about them and there are no known cases of users getting banned for using client mods! So you should generally be fine as long as you don’t use any plugins that implement abusive behaviour. But no worries, all inbuilt plugins are safe to use!
+However, Discord is pretty indifferent about them and there are no known cases of users getting banned for using client mods! So you should generally be fine as long as you don’t use any plugins that implement abusive behaviour. You should know what a plugin does and configure it properly before using it.
 
-Regardless, if your account is very important to you and it getting disabled would be a disaster for you, you should probably not use any client mods (not exclusive to Vencord), just to be safe
+Regardless, if your account is very important to you and it getting disabled would be a disaster for you, you should probably not use any client mods (not exclusive to Vencord+ or Vencord), just to be safe.
 
-Additionally, make sure not to post screenshots with Vencord in a server where you might get banned for it
+Additionally, make sure not to send screenshots and messages that expose that you are using a client mod.
 
 </details>
