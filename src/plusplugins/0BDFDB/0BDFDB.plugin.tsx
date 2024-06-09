@@ -27,7 +27,7 @@ const settings = definePluginSettings({
     loader: {
         type: OptionType.BOOLEAN,
         default: true,
-        description: "Show the betterdiscord loading icon",
+        description: "Show the BetterDiscord loading icon",
     },
     _: {
         type: OptionType.COMPONENT,
@@ -45,12 +45,13 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "BDFDB",
-    description: "Required Library for DevilBro's Plugins",
+    description: "Required library for DevilBro's plugins.",
     authors: [{
         name: "DevilBro",
         id: 278543574059057154n
     }],
 
+    enabledByDefault: true,
     required: true,
 
     settings,
