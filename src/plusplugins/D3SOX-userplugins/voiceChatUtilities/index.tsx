@@ -145,13 +145,13 @@ const settings = definePluginSettings({
     waitAfter: {
         type: OptionType.SLIDER,
         description: "Amount of API actions to perform before waiting (to avoid rate limits)",
-        default: 5,
+        default: 1,
         markers: makeRange(1, 20),
     },
     waitSeconds: {
         type: OptionType.SLIDER,
         description: "Time to wait between each action (in seconds)",
-        default: 2,
+        default: 0.5,
         markers: makeRange(1, 10, .5),
     }
 });
@@ -167,5 +167,3 @@ export default definePlugin({
         "channel-context": VoiceChannelContext
     },
 });
-
-
