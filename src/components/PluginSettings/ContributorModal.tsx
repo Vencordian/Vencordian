@@ -65,7 +65,7 @@ function ContributorModal({ user }: { user: User; }) {
 
     const plugins = useMemo(() => {
         const allPlugins = Object.values(Plugins);
-        const pluginsByAuthor = DevsById[user.id]
+        const pluginsByAuthor = DevsById[user.id] || SuncordDevsById[user.id] || PlusDevsById[user.id] || PlusMtsById[user.id]
             ? allPlugins.filter(p => p.authors.includes(DevsById[user.id] || SuncordDevsById[user.id] || PlusDevsById[user.id] || PlusMtsById[user.id]))
             : allPlugins.filter(p => p.authors.some(a => a.name === user.username));
 
