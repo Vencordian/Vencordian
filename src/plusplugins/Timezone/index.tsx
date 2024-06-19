@@ -26,7 +26,7 @@ export let timezones: Record<string, string | null> = {};
     timezones = await DataStore.get<Record<string, string>>(DATASTORE_KEY) || {};
 })();
 
-const classes = findByPropsLazy("timestamp", "compact", "content");
+const classes = findByPropsLazy("timestamp", "compact", "contentOnly");
 
 export const settings = definePluginSettings({
     "24h Time": {
@@ -130,16 +130,16 @@ export default definePlugin({
 
     patches: [
         {
-            find: ".NITRO_BANNER,",
+            find: /let{profileType:.,children:./,
             replacement: {
-                match: /getUserBannerStyles.{1,600}children:\[/,
-                replace: "$&$self.renderProfileTimezone(arguments[0]),"
+                match: /\),children:(.)/,
+                replace: "),children: [$self.renderProfileTimezone(arguments[0]), ...$1]"
             }
         },
         {
             find: ".badgesContainer,",
             replacement: {
-                match: /id:\(0,\i\.getMessageTimestampId\)\(\i\),timestamp.{1,50}}\),/,
+                match: /id:.{1,11},timestamp.{1,50}}\),/,
                 replace: "$&,$self.renderMessageTimezone(arguments[0]),"
             }
         }
@@ -148,11 +148,19 @@ export default definePlugin({
     getTime,
 
 
-    renderProfileTimezone: (props?: { user?: User; }) => {
-        if (!settings.store.showProfileTime || !props?.user?.id) return null;
+    renderProfileTimezone: (renderState: any) => {
+        if (!settings.store.showProfileTime) return null;
+
+        let user: any = null;
+        for (const child of renderState.children) {
+            if (child.props?.user?.id) {
+                user = child.props.user;
+            }
+        }
+        if (!user) return null;
 
         return <TimestampComponent
-            userId={props.user.id}
+            userId={user.id}
             type="profile"
         />;
     },
