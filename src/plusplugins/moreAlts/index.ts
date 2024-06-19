@@ -20,10 +20,11 @@ export default definePlugin({
     settings,
     patches: [
         {
-            find: "MAX_ACCOUNTS:",
+            find: "\"multiaccount_cta_tooltip_seen\"",
             replacement: [{
-                match: /MAX_ACCOUNTS:function\(\){return .{1,2}\}/,
-                replace: `MAX_ACCOUNTS:function(){return $self.settings.amtOfAcounts}`
+                // the first export seems to always be the amount of alts, we should find a better way to do this in the future
+                match: /(.{0,2}):function\(\){return .{1,2}\}/,
+                replace: `$1:function(){return $self.settings.amtOfAcounts}`
             }]
         }
     ]
