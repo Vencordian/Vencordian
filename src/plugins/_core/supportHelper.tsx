@@ -21,7 +21,7 @@ import { Link } from "@components/Link";
 import { openUpdaterModal } from "@components/VencordSettings/UpdaterTab";
 import { Devs, SUPPORT_CHANNEL_ID } from "@utils/constants";
 import { Margins } from "@utils/margins";
-import { isPluginDev } from "@utils/misc";
+import { isPluginDev, isSuncordPluginDev, isPlusPluginDev, isPlusMt } from "@utils/misc";
 import { relaunch } from "@utils/native";
 import { makeCodeblock } from "@utils/text";
 import definePlugin from "@utils/types";
@@ -65,13 +65,13 @@ export default definePlugin({
     commands: [{
         name: "vencord-debug",
         description: "Send Vencord Debug info",
-        predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || AllowedChannelIds.includes(ctx.channel.id),
+        predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || isSuncordPluginDev(UserStore.getCurrentUser()?.id) || isPlusPluginDev(UserStore.getCurrentUser()?.id) || isPlusMt(UserStore.getCurrentUser()?.id) || AllowedChannelIds.includes(ctx.channel.id),
         async execute() {
             const { RELEASE_CHANNEL } = window.GLOBAL_ENV;
 
             const client = (() => {
                 if (IS_DISCORD_DESKTOP) return `Discord Desktop v${DiscordNative.app.getVersion()}`;
-                if (IS_VESKTOP) return `VesktopPlus v${VesktopNative.app.getVersion()}`;
+                if (IS_VESKTOP) return `Vesktop+ v${VesktopNative.app.getVersion()}`;
                 if ("armcord" in window) return `ArmCord v${window.armcord.version}`;
 
                 // @ts-expect-error
@@ -84,7 +84,7 @@ export default definePlugin({
             const enabledPlugins = Object.keys(plugins).filter(p => Vencord.Plugins.isPluginEnabled(p) && !isApiPlugin(p));
 
             const info = {
-                Vencord:
+                Vencord+:
                     `v${VERSION} • [${gitHash}](<https://github.com/RobinRMC/VencordPlus/commit/${gitHash}>)` +
                     `${settings.additionalInfo} - ${Intl.DateTimeFormat("en-GB", { dateStyle: "medium" }).format(BUILD_TIMESTAMP)}`,
                 Client: `${RELEASE_CHANNEL} ~ ${client}`,
@@ -113,13 +113,13 @@ ${makeCodeblock(enabledPlugins.join(", "))}
             if (channelId !== SUPPORT_CHANNEL_ID) return;
 
             const selfId = UserStore.getCurrentUser()?.id;
-            if (!selfId || isPluginDev(selfId)) return;
+            if (!selfId || isPluginDev(selfId) || isSuncordPluginDev(selfId) || isPlusPluginDev(selfId) || isPlusMt(selfId)) return;
 
             if (isOutdated) {
                 return Alerts.show({
                     title: "Hold on!",
                     body: <div>
-                        <Forms.FormText>You are using an outdated version of Vencord! Chances are, your issue is already fixed.</Forms.FormText>
+                        <Forms.FormText>You are using an outdated version of Vencord+! Chances are your issue is already fixed.</Forms.FormText>
                         <Forms.FormText className={Margins.top8}>
                             Please update before asking for support!
                         </Forms.FormText>
