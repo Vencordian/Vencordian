@@ -48,11 +48,11 @@ const updateBadgesForAllUsers = () => {
                         description: badge.description,
                         props: {
                             style: {
-                                borderRadius: "50%",
+                                borderRadius: "15%",
                                 transform: "scale(0.9)"
                             }
                         },
-                        shouldShow: user => user.user.id === userId,
+                        shouldShow: userInfo => userInfo.userId === userId,
                         onClick() {
                             const modalKey = openModal(props => (
                                 <ErrorBoundary noop onError={() => {
@@ -229,7 +229,7 @@ function fakeProfileSection({ hideTitle = false, hideDivider = false, noMargin =
                     await loadfakeProfile(true);
                     updateBadgesForAllUsers();
                     Toasts.show({
-                        message: "Successfully refetched fakeProfile!",
+                        message: "Successfully refetched fakeProfile's data!",
                         id: Toasts.genId(),
                         type: Toasts.Type.SUCCESS
                     });
@@ -418,33 +418,25 @@ export default definePlugin({
         },
         {
             find: ".NITRO_BANNER,",
-            replacement: [
-                {
-                    match: /(\i)\.premiumType/,
-                    replace: "$self.premiumHook($1)||$&"
-                },
-                {
-                    match: /(?<=function \i\((\i)\)\{)(?=var.{30,50},bannerSrc:)/,
-                    replace: "$1.bannerSrc=$self.useBannerHook($1);"
-                },
-                {
-                    match: /\?\(0,\i\.jsx\)\(\i,{type:\i,shown/,
-                    replace: "&&$self.shouldShowBadge(arguments[0])$&"
-                }
-            ]
+            replacement: {
+                match: /\?\(0,\i\.jsx\)\(\i,{type:\i,shown/,
+                replace: "&&$self.shouldShowBadge(arguments[0])$&"
+            }
         },
         {
-            find: /overrideBannerSrc:\i,overrideBannerWidth:/,
-            replacement: [
-                {
-                    match: /(\i)\.premiumType/,
-                    replace: "$self.premiumHook($1)||$&"
-                },
-                {
-                    match: /function \i\((\i)\)\{/,
-                    replace: "$&$1.overrideBannerSrc=$self.useBannerHook($1);"
-                }
-            ]
+            find: "=!1,canUsePremiumCustomization:",
+            replacement: {
+                match: /(\i)\.premiumType/,
+                replace: "$self.premiumHook($1)||$&"
+            }
+        },
+        {
+            find: ".banner)==null",
+            replacement: {
+                match: /(?<=void 0:)\i.getPreviewBanner\(\i,\i,\i\)/,
+                replace: "$self.useBannerHook(arguments[0])||$&"
+
+            }
         },
         {
             find: "\"data-selenium-video-tile\":",
@@ -491,7 +483,7 @@ export default definePlugin({
             find: "renderAvatarWithPopout(){",
             replacement: [
                 {
-                    match: /(?<=getAvatarDecorationURL\)\({avatarDecoration:)(\i).avatarDecoration(?=,)/,
+                    match: /(?<=\)\({(?:(?:.(?!\)}))*,)?avatarDecoration:)(\i)\.avatarDecoration(?=,|}\))/,
                     replace: "$self.useUserAvatarDecoration($1)??$&"
                 }
             ]
@@ -501,7 +493,7 @@ export default definePlugin({
 
         <Forms.FormSection>
             <Forms.FormTitle tag="h3">Usage</Forms.FormTitle>
-            <Link href="https://github.com/sampathgujarathi/fakeProfile">Click here to get profile effects, custom badges, banner or animated pfp</Link>
+            <Link href="https://github.com/sampathgujarathi/fakeProfile">Click here to get a profile effect, banner, animated profile picture or custom badges</Link>
             <Forms.FormText>
                 Enable profile themes to use fake profile themes. <br />
                 To set your own colors:
@@ -591,9 +583,9 @@ export default definePlugin({
         }
     },
 
-    useBannerHook({ displayProfile, user }: any) {
+    useBannerHook({ displayProfile }: any) {
         if (displayProfile?.banner && settings.store.nitroFirst) return;
-        if (UsersData[user.id] && UsersData[user.id].banner) return UsersData[user.id].banner;
+        if (UsersData[displayProfile?.userId] && UsersData[displayProfile?.userId].banner) return UsersData[displayProfile?.userId].banner;
     },
 
     premiumHook({ userId }: any) {
@@ -630,11 +622,11 @@ export default definePlugin({
     },
     fakeProfileSection: ErrorBoundary.wrap(fakeProfileSection),
     toolboxActions: {
-        async "Refetch fakeProfile"() {
+        async "Refetch fakeProfile's data"() {
             await loadfakeProfile(true);
             updateBadgesForAllUsers();
             Toasts.show({
-                message: "Successfully refetched fakeProfile!",
+                message: "Successfully refetched fakeProfile's data!",
                 id: Toasts.genId(),
                 type: Toasts.Type.SUCCESS
             });
