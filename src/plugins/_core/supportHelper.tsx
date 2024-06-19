@@ -84,7 +84,7 @@ export default definePlugin({
             const enabledPlugins = Object.keys(plugins).filter(p => Vencord.Plugins.isPluginEnabled(p) && !isApiPlugin(p));
 
             const info = {
-                Vencord+:
+                Vencord\+:
                     `v${VERSION} • [${gitHash}](<https://github.com/RobinRMC/VencordPlus/commit/${gitHash}>)` +
                     `${settings.additionalInfo} - ${Intl.DateTimeFormat("en-GB", { dateStyle: "medium" }).format(BUILD_TIMESTAMP)}`,
                 Client: `${RELEASE_CHANNEL} ~ ${client}`,
