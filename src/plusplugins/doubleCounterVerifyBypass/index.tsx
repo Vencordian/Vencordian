@@ -1,6 +1,6 @@
 /*
  * Vencord, a modification for Discord's desktop app
- * Copyright (c) 2024 Vendicated and contributors
+ * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,14 +17,9 @@
 */
 
 import { NavContextMenuPatchCallback } from "@api/ContextMenu";
-import { SuncordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { Alerts, Menu } from "@webpack/common";
 import { Message } from "discord-types/general";
-import { Settings } from "Vencord";
-
-import { registerAction } from "../commandPalette/commands";
-import { openSimpleTextInput } from "../commandPalette/components/TextInput";
 
 const DOUBLECOUNTER_APP_ID = "703886990948565003";
 const VERIFICATION_LINK_REGEX = /https:\/\/verify.doublecounter.gg\/v\/[0-9a-z]{8,16}/g;
@@ -72,33 +67,15 @@ async function verify(link) {
 export default definePlugin({
     name: "DoubleCounterVerifyBypass",
     description: "Bypass Double Counter verifications easily.",
-    authors: [SuncordDevs.nyx],
+    authors: [
+        {
+            id: 1181610810548686979n,
+            name: "verticalsync",
+        },
+    ],
 
     contextMenus: {
         "message": patchMessageContextMenu,
-    },
-
-    start() {
-        if (Settings.plugins.CommandPalette.enabled) {
-            registerAction({
-                id: "doubleCounterVerify",
-                label: "Verify a Double Counter Link",
-                callback: async () => {
-                    const link = await openSimpleTextInput("Please enter the Double Counter link you want to verify.");
-                    if (link) {
-                        await verify(link).then(() => {
-                            Alerts.show({
-                                title: "Verified",
-                                body: "You have been verified successfully, please wait a little bit for DoubleCounter to update your roles.",
-                                confirmText: "Okay",
-                                onConfirm: () => { }
-                            });
-                        });
-                    }
-                },
-                registrar: "DoubleCounterVerifyBypass"
-            });
-        }
     },
 
     flux: {
