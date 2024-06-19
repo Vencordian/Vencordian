@@ -10,7 +10,7 @@ import { useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Link } from "@components/Link";
-import { DevsById } from "@utils/constants";
+import { DevsById, SuncordDevsById, PlusDevsById, PlusMtsById } from "@utils/constants";
 import { fetchUserProfile, getTheme, Theme } from "@utils/discord";
 import { pluralise } from "@utils/misc";
 import { ModalContent, ModalRoot, openModal } from "@utils/modal";
@@ -66,7 +66,7 @@ function ContributorModal({ user }: { user: User; }) {
     const plugins = useMemo(() => {
         const allPlugins = Object.values(Plugins);
         const pluginsByAuthor = DevsById[user.id]
-            ? allPlugins.filter(p => p.authors.includes(DevsById[user.id]))
+            ? allPlugins.filter(p => p.authors.includes(DevsById[user.id] || SuncordDevsById[user.id] || PlusDevsById[user.id] || PlusMtsById[user.id]))
             : allPlugins.filter(p => p.authors.some(a => a.name === user.username));
 
         return pluginsByAuthor
@@ -74,7 +74,7 @@ function ContributorModal({ user }: { user: User; }) {
             .sort((a, b) => Number(a.required ?? false) - Number(b.required ?? false));
     }, [user.id, user.username]);
 
-    const ContributedHyperLink = <Link href="https://vencord.dev/source">contributed</Link>;
+    const ContributedHyperLink = <Link href="https://github.com/RobinRMC/VencordPlus">contributed</Link>;
 
     return (
         <>
@@ -114,7 +114,7 @@ function ContributorModal({ user }: { user: User; }) {
                 </Forms.FormText>
             ) : (
                 <Forms.FormText>
-                    This person has not made any plugins. They likely {ContributedHyperLink} to Vencord in other ways!
+                    This person has not made any plugins. They likely {ContributedHyperLink} to Vencord+ in other ways!
                 </Forms.FormText>
             )}
 

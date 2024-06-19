@@ -34,12 +34,39 @@ import { Forms, Toasts, UserStore } from "@webpack/common";
 import { User } from "discord-types/general";
 
 const CONTRIBUTOR_BADGE = "https://vencord.dev/assets/favicon.png";
+const SUNCORD_CONTRIBUTOR_BADGE = "https://raw.githubusercontent.com/verticalsync/Suncord/main/src/assets/icon.png";
+const PLUS_CONTRIBUTOR_BADGE = "https://vencord.dev/assets/favicon.png";  // Help, I need a custom thingy
+const PLUS_MAINTAINER_BADGE = "https://vencord.dev/assets/favicon.png";  // Will be the same icon as above
 
 const ContributorBadge: ProfileBadge = {
     description: "Vencord Contributor",
     image: CONTRIBUTOR_BADGE,
     position: BadgePosition.START,
     shouldShow: ({ userId }) => isPluginDev(userId),
+    onClick: (_, { userId }) => openContributorModal(UserStore.getUser(userId))
+};
+
+const SuncordContributorBadge: ProfileBadge = {
+    description: "Suncord Contributor",
+    image: SUNCORD_CONTRIBUTOR_BADGE,
+    position: BadgePosition.START,
+    shouldShow: ({ userId }) => isSuncordPluginDev(userId),
+    onClick: (_, { userId }) => openContributorModal(UserStore.getUser(userId))
+};
+
+const PlusContributorBadge: ProfileBadge = {
+    description: "Vencord+ Contributor",
+    image: PLUS_CONTRIBUTOR_BADGE,
+    position: BadgePosition.START,
+    shouldShow: ({ userId }) => isPlusPluginDev(userId),
+    onClick: (_, { userId }) => openContributorModal(UserStore.getUser(userId))
+};
+
+const PlusMaintainerBadge: ProfileBadge = {
+    description: "Vencord+ Maintainer",
+    image: PLUS_MAINTAINER_BADGE,
+    position: BadgePosition.START,
+    shouldShow: ({ userId }) => isPlusMt(userId),
     onClick: (_, { userId }) => openContributorModal(UserStore.getUser(userId))
 };
 
@@ -132,6 +159,9 @@ export default definePlugin({
 
     async start() {
         Vencord.Api.Badges.addBadge(ContributorBadge);
+        Vencord.Api.Badges.addBadge(SuncordContributorBadge);
+        Vencord.Api.Badges.addBadge(PlusContributorBadge);
+        Vencord.Api.Badges.addBadge(PlusMaintainerBadge);
         await loadBadges();
     },
 
