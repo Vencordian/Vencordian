@@ -19,7 +19,7 @@
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Link } from "@components/Link";
 import { openUpdaterModal } from "@components/VencordSettings/UpdaterTab";
-import { Devs, SuncordDevs, EquicordDevs, PlusDevs, PlusMts, SUPPORT_CHANNEL_ID } from "@utils/constants";
+import { Devs, SUPPORT_CHANNEL_ID } from "@utils/constants";
 import { Margins } from "@utils/margins";
 import { isPluginDev, isSuncordPluginDev, isEquicordPluginDev, isPlusPluginDev, isPlusMt } from "@utils/misc";
 import { relaunch } from "@utils/native";
