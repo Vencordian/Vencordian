@@ -10,7 +10,7 @@ import { useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Link } from "@components/Link";
-import { DevsById, SuncordDevsById, PlusDevsById, PlusMtsById } from "@utils/constants";
+import { DevsById, SuncordDevsById, EquicordDevsById, PlusDevsById, PlusMtsById } from "@utils/constants";
 import { fetchUserProfile, getTheme, Theme } from "@utils/discord";
 import { pluralise } from "@utils/misc";
 import { ModalContent, ModalRoot, openModal } from "@utils/modal";
@@ -65,8 +65,8 @@ function ContributorModal({ user }: { user: User; }) {
 
     const plugins = useMemo(() => {
         const allPlugins = Object.values(Plugins);
-        const pluginsByAuthor = DevsById[user.id] || SuncordDevsById[user.id] || PlusDevsById[user.id] || PlusMtsById[user.id]
-            ? allPlugins.filter(p => p.authors.includes(DevsById[user.id] || SuncordDevsById[user.id] || PlusDevsById[user.id] || PlusMtsById[user.id]))
+        const pluginsByAuthor = DevsById[user.id] || SuncordDevsById[user.id] || EquicordDevsById[user.id] || PlusDevsById[user.id] || PlusMtsById[user.id]
+            ? allPlugins.filter(p => p.authors.includes(DevsById[user.id] || SuncordDevsById[user.id] || EquicordDevsById[user.id] || PlusDevsById[user.id] || PlusMtsById[user.id]))
             : allPlugins.filter(p => p.authors.some(a => a.name === user.username));
 
         return pluginsByAuthor

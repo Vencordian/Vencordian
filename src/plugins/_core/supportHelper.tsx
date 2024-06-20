@@ -19,9 +19,9 @@
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Link } from "@components/Link";
 import { openUpdaterModal } from "@components/VencordSettings/UpdaterTab";
-import { Devs, SUPPORT_CHANNEL_ID } from "@utils/constants";
+import { Devs, SuncordDevs, EquicordDevs, PlusDevs, PlusMts, SUPPORT_CHANNEL_ID } from "@utils/constants";
 import { Margins } from "@utils/margins";
-import { isPluginDev, isSuncordPluginDev, isPlusPluginDev, isPlusMt } from "@utils/misc";
+import { isPluginDev, isSuncordPluginDev, isEquicordPluginDev, isPlusPluginDev, isPlusMt } from "@utils/misc";
 import { relaunch } from "@utils/native";
 import { makeCodeblock } from "@utils/text";
 import definePlugin from "@utils/types";
@@ -65,7 +65,7 @@ export default definePlugin({
     commands: [{
         name: "vencord-debug",
         description: "Send Vencord Debug info",
-        predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || isSuncordPluginDev(UserStore.getCurrentUser()?.id) || isPlusPluginDev(UserStore.getCurrentUser()?.id) || isPlusMt(UserStore.getCurrentUser()?.id) || AllowedChannelIds.includes(ctx.channel.id),
+        predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || isSuncordPluginDev(UserStore.getCurrentUser()?.id) || isEquicordPluginDev(UserStore.getCurrentUser()?.id) || isPlusPluginDev(UserStore.getCurrentUser()?.id) || isPlusMt(UserStore.getCurrentUser()?.id) || AllowedChannelIds.includes(ctx.channel.id),
         async execute() {
             const { RELEASE_CHANNEL } = window.GLOBAL_ENV;
 
@@ -113,7 +113,7 @@ ${makeCodeblock(enabledPlugins.join(", "))}
             if (channelId !== SUPPORT_CHANNEL_ID) return;
 
             const selfId = UserStore.getCurrentUser()?.id;
-            if (!selfId || isPluginDev(selfId) || isSuncordPluginDev(selfId) || isPlusPluginDev(selfId) || isPlusMt(selfId)) return;
+            if (!selfId || isPluginDev(selfId) || isSuncordPluginDev(selfId) || isEquicordPluginDev(selfId) || isPlusPluginDev(selfId) || isPlusMt(selfId)) return;
 
             if (isOutdated) {
                 return Alerts.show({
