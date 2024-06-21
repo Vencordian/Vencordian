@@ -5,7 +5,7 @@ import { Flex } from "@components/Flex";
 import { Button, FluxDispatcher, Alerts, Forms, UserStore, Toasts } from "@webpack/common";
 import { UserProfileStore } from "@webpack/common";
 import { DataStore } from "@api/index";
-const native = VencordNative.pluginHelpers.ImNotHere as PluginNative<typeof import("./native")>;
+const native = VencordNative.pluginHelpers.Identity as PluginNative<typeof import("./native")>;
 
 const CustomizationSection = findByCodeLazy(".customizationSectionBackground");
 
@@ -33,8 +33,8 @@ async function SaveData()
     //the getUserProfile function doesn't return all the information we need, so we append the standard user object data to the end
     let extraUserObject : any = { extraUserObject: UserStore.getCurrentUser()};
 
-    let pfp = JSON.parse(await native.ToBase64ImageUrl({imgUrl: `https://cdn.discordapp.com/avatars/${userData.userId}/${extraUserObject.extraUserObject.avatar}.webp?size=256`})).data;
-    let banner = JSON.parse(await native.ToBase64ImageUrl({imgUrl: `https://cdn.discordapp.com/banners/${userData.userId}/${userData.banner}.webp?size=256`})).data;
+    let pfp = JSON.parse(await native.ToBase64ImageUrl({imgUrl: `https://cdn.discordapp.com/avatars/${userData.userId}/${extraUserObject.extraUserObject.avatar}.webp?size=4096`})).data;
+    let banner = JSON.parse(await native.ToBase64ImageUrl({imgUrl: `https://cdn.discordapp.com/banners/${userData.userId}/${userData.banner}.webp?size=4096`})).data;
 
     let fetchedBase64Data = 
     {
@@ -134,7 +134,7 @@ function ResetCard()
 }
 
 export default definePlugin({
-    name: "ImNotHere",
+    name: "Identity",
     description: "Allows you to edit your profile to a random fake person with the click of a button",
     authors:
     [
