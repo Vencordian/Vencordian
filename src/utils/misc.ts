@@ -103,3 +103,14 @@ export const isPlusMt = (id: string) => Object.hasOwn(PlusMtsById, id);
 export function pluralise(amount: number, singular: string, plural = singular + "s") {
     return amount === 1 ? `${amount} ${singular}` : `${amount} ${plural}`;
 }
+
+export function tryOrElse<T>(func: () => T, fallback: T): T {
+    try {
+        const res = func();
+        return res instanceof Promise
+            ? res.catch(() => fallback) as T
+            : res;
+    } catch {
+        return fallback;
+    }
+}

@@ -22,6 +22,11 @@
 declare module "~plugins" {
     const plugins: Record<string, import("./utils/types").Plugin>;
     export default plugins;
+    export const PluginMeta: Record<string, {
+        folderName: string;
+        plusPlugin: boolean;
+    }>;
+    export const ExcludedPlugins: Record<string, "web" | "discordDesktop" | "vencordDesktop" | "desktop" | "dev">;
 }
 
 declare module "~pluginNatives" {
