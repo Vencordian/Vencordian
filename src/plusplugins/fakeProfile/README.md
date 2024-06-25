@@ -39,17 +39,17 @@ ___
   <img src="https://github.com/sampathgujarathi/fakeProfile/blob/137947f167b631f6fdbd2ff07ba26e48016c5658/assets/profilepreview.png?raw=true" alt="Preview" width="500">
 </div>
 
-**fakeProfile** is a plugin for **Vencord** that supports all features related to nitro profile editing `without` the need to use individual plugins to create a complete profile with features such as:
+**fakeProfile** is a plugin for **Discord mod client** that supports all features related to nitro profile editing without need to use individual plugins to create a complete profile with features such as:
 
-> - ✅ Supports custom static and animated banner without need nitro[^1] [^2].
-> - ✅ Supports custom static and animated avatar without need nitro[^1] [^2].
-> - ✅ Supports choosing Discord's available badges and you can custom your own badges[^1] [^3].
-> - ✅ Supports choosing Discord's available effect profiles without need nitro[^1] [^2].
-> - ✅ Supports changing theme profile color without needing nitro[^1] [^3].
-> - ✅ Supports selecting and custom decorations without needing nitro[^1] [^2].
-> - ✅ Support show **fakeProfile** badges in chat[^1] [^3].
-> - ✅ Supports approval of avatars, banners and badges using **AI** extremely quickly and conveniently. You won't have to wait too long for your request to be sent.
-> - ✅ We pride ourselves on our plugin being the **`fastest`** and **`fully automatic`** refresh every **2 minutes** from the latest request being approved without having to reload Discord or restart the client and of course you can also refresh the plugin manually if you don't want to wait[^1] [^3].
+> - ✅ Custom static and animated banner without Nitro[^1] [^2].
+> - ✅ Custom static and animated avatar without Nitro[^1] [^2].
+> - ✅ Choosing Discord's available badges and you can create your own badges[^1] [^3].
+> - ✅ Choosing Discord's available effect profiles without Nitro[^1] [^2].
+> - ✅ Changing theme profile color without Nitro[^1] [^3].
+> - ✅ Selecting and custom decorations without Nitro[^1] [^2].
+> - ✅ Show **fakeProfile** badges in chat[^1] [^3].
+> - ✅ Approval of avatars, banners and badges using **AI** extremely quickly and conveniently. You won't have to wait too long for your request to be sent.
+> - ✅ We pride ourselves on our plugin being the **fastest** 🚀 and **fully automatic** 🔄 refresh every **2 minutes** from the latest request being approved without having to reload Discord or restart the client and of course you can also refresh the plugin manually if you don't want to wait[^1] [^3].
 
 [^1]: This feature is only available to users of this plugin.
 [^2]: The feature only works when other plugins related to this feature are disabled because other plugins can override that plugin's features on this plugin.
@@ -96,10 +96,10 @@ ___
  ```shell
  pnpm build
  ```
- And that all. Now you can restart Discord and check **fakeProfile** in **Plugins** setting.
+ And that's all. Now you can restart Discord and check **fakeProfile** in **Plugins** setting.
 
  ### 3. How to update fakeProfile plugin?
- - Goto `Vencord\src\userplugins\fakeProfile` in adress bar type **cmd** and click to **Command Prompt** type:
+ - Go to `Vencord\src\userplugins\fakeProfile` in adress bar type **cmd** and click to **Command Prompt** type:
  ```shell
  git pull
  ```
@@ -133,12 +133,12 @@ ___
 <summary>Click to read</summary>
 <br>
 
- - Goto [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
+ - Go to [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
  - Used `/profile banner upload` command like image below:
 
  <img src="https://i.imgur.com/AtYO0kW.png" alt="profile banner upload">
 
- - All that's left for you is to wait until your request is approved in the [#fakeprofile-log](https://discord.com/channels/1117373291095662623/1215640664373465129) and wait 2 mins or reload manually is done.
+ - All that's left for you is to wait until your request is approved in the [#fakeprofile-logs](https://discord.com/channels/1117373291095662623/1215640664373465129) and wait 2 mins or reload manually is done.
 
 </details>
 
@@ -147,12 +147,12 @@ ___
 <summary>Click to read</summary>
 <br>
 
- - Goto [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
+ - Go to [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
  - Used `/profile avatar upload` command like image below:
 
  <img src="https://github.com/sampathgujarathi/fakeProfile/assets/66912066/cd39bd4c-7226-496e-b08e-1c1cd8f12e81" alt="profile avatar upload">
 
- - All that's left for you is to wait until your request is approved in the [#fakeprofile-log](https://discord.com/channels/1117373291095662623/1215640664373465129) and wait 2 mins or reload manually is done.
+ - All that's left for you is to wait until your request is approved in the [#fakeprofile-logs](https://discord.com/channels/1117373291095662623/1215640664373465129) and wait 2 mins or reload manually is done.
 </details>
 
 ### 3. How to choose a profile effect?
@@ -160,7 +160,7 @@ ___
 <summary>Click to read</summary>
 <br>
 
- - Goto [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
+ - Go to [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
  - Used command `/profile effects` `effects: Effect in options` like this:
 
   <img src="https://i.imgur.com/whE2fht.png" alt="profile effects">
@@ -173,17 +173,29 @@ ___
  - After that wait 2 mins or reload manually is done.
 </details>
 
-### 4. How to request badge?
+### 4. How to choose default discord badges or request a custom badge?
 <details closed>
-<summary>Click to read</summary>
+<summary>Choose default badges</summary>
 <br>
 
- - Goto [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
+ - Go to [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
+ - Used command `/badges select` `name` like this:
+
+ <img src="https://i.imgur.com/9EnyNxY.png" alt="/badges select command">
+
+ - Wait 2 mins or reload manually is done.
+
+</details>
+<details closed>
+<summary>Request custom badges</summary>
+<br>
+
+ - Go to [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
  - Used command `/badges add` `Name` `Icon` like this:
 
  <img src="https://i.imgur.com/7tB0Zfz.png" alt="/badges add command">
 
- - Wait your request approved in [#fakeProfile-log](https://discord.com/channels/1117373291095662623/1215640664373465129) and wait 2 mins or reload manually is done.
+ - Wait your request approved in [#fakeProfile-logs](https://discord.com/channels/1117373291095662623/1215640664373465129) and wait 2 mins or reload manually is done.
 </details>
 
 ### 5. How to manager and remove my badges?
@@ -191,7 +203,7 @@ ___
 <summary>Click to read</summary>
 <br>
 
- - Goto [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
+ - Go to [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
  - Used `/badges view` like this image:
 
  <img src="https://i.imgur.com/tNYpOpv.png" alt="badges view commands">
@@ -208,7 +220,7 @@ ___
 <summary>Click to read</summary>
 <br>
 
- - Goto [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
+ - Go to [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
  - Used command `/profile decorations` `decoration: Decoration in options` like this:
 
   <img src="https://i.imgur.com/NVG7t5E.png" alt="avatar decorations">
@@ -233,12 +245,12 @@ ___
   <img src="https://github.com/sang765/videoupload/blob/main/Discord_1ErcXCAVvA.gif?raw=true" alt="tutorial profile theme">
 </details>
 
-### 8. How to remove fakeProfile avatar and banner?
+### 8. How to remove fakeProfile avatar or banner?
 <details closed>
 <summary>Click to read</summary>
 <br>
 
- - Goto [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
+ - Go to [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
  - With **avatar** use `/profile avatar remove` command:
 
   <img src="https://i.imgur.com/5jqetBQ.png" alt="avatar remove">
@@ -256,13 +268,13 @@ ___
 <br>
 
 1. Can everyone in Discord see my profile?
- - No, everyone in Discord will not see about your Profile change but in case if they also use the fakeProfile plugin then they will see your change.
+ - No, everyone in Discord will not see your profile changes unless they also use the fakeProfile plugin.
 
 2. If I leave the Discord server, will everything on my profile be lost?
- - No, because your requests will be saved in the plugin's database, so if you leave the server, everything will not be affected. *(unless you turn off the fakeProfile plugin, everything will return to the way it was when you didn't use this plugin)*
-
+ - No, because your requests will be saved in the plugin's database, so if you leave the server, everything will not be affected.
+   
 3. So what happens if I disable fakeProfile plugin?
- - As I answered in the 2nd QnA, everything will return to the way it was before you used this plugin. Of course, you can still turn it back on if you want to use it, but if you don't want to use it anymore, you have the right to turn this plugin off.
+ - Everything will return to the way it was before you used this plugin. Of course, you can still turn it back on if you want to use it, but if you don't want to use it anymore, you have the right to turn this plugin off.
 </details>
 
 ## 👍Contributors
@@ -274,7 +286,7 @@ Thanks for all your support for this project.
 </p>
 
 ## ❤️Final words
-If you feel loved or interested in this project, you can leave us **1 star** and share this project with people who have the same needs as you. That will be a great motivation for we to continue developing this project to become much better. Thank you so much.
+If you feel loved or interested in this project, you can leave us a **star** and share this project with people who have the same needs as you. That will be a great motivation for us to continue developing this project to make it become even better. Thank you so much.
 <p align="center">
   <a href="https://github.com/sampathgujarathi/fakeProfile" style="pointer-events: none; cursor: default;">
     <img src="https://m3-markdown-badges.vercel.app/stars/2/2//sampathgujarathi/fakeProfile" alt="Leave us a star" width="200">

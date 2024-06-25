@@ -236,7 +236,7 @@ function fakeProfileSection({ hideTitle = false, hideDivider = false, noMargin =
                 }}
                 size={Button.Sizes.SMALL}
             >
-                Refetch fakeProfile
+                Refetch fakeProfile's data
             </Button>
         </Flex>
     </CustomizationSection>;

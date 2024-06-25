@@ -1,12 +1,13 @@
 .timezone-profile-item {
-    display: flex;
-    position: relative;
-    margin: 8px 0px 4px;
-    background: hsl(var(--black-500-hsl)/.7);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 28px 16px 4px;
+    background: var(--profile-body-background-color, var(--background-primary));
     border-radius: 4px;
     padding: 0.25rem 0.5rem;
     font-size: 0.75rem;
-    color: var(--white-500);
+    color: var(--text-normal);
 }
 
 [class*="topSection"] .timezone-profile-item {

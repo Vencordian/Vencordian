@@ -1,6 +1,6 @@
 /*
  * Vencord, a Discord client mod
- * Copyright (c) 2023 Vendicated and contributors
+ * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -129,17 +129,19 @@ export default definePlugin({
     description: "Shows the local time of users in profiles and message headers",
 
     patches: [
-        {
-            find: /let{profileType:.,children:./,
+        // stolen from ViewIcons
+        ...[".NITRO_BANNER,", "=!1,canUsePremiumCustomization:"].map(find => ({
+            find,
             replacement: {
-                match: /\),children:(.)/,
-                replace: "),children: [$self.renderProfileTimezone(arguments[0]), ...$1]"
+                match: /(?<=hasProfileEffect.+?)children:\[/,
+                replace: "$&$self.renderProfileTimezone(arguments[0]),"
             }
-        },
+        })),
         {
-            find: ".badgesContainer,",
+            find: '"Message Username"',
             replacement: {
-                match: /id:.{1,11},timestamp.{1,50}}\),/,
+                // thanks https://github.com/Syncxv/vc-timezones/pull/4
+                match: /(?<=isVisibleOnlyOnHover.+?)id:.{1,11},timestamp.{1,50}}\),/,
                 replace: "$&,$self.renderMessageTimezone(arguments[0]),"
             }
         }
@@ -148,19 +150,11 @@ export default definePlugin({
     getTime,
 
 
-    renderProfileTimezone: (renderState: any) => {
-        if (!settings.store.showProfileTime) return null;
-
-        let user: any = null;
-        for (const child of renderState.children) {
-            if (child.props?.user?.id) {
-                user = child.props.user;
-            }
-        }
-        if (!user) return null;
+    renderProfileTimezone: (props?: { user?: User; }) => {
+        if (!settings.store.showProfileTime || !props?.user?.id) return null;
 
         return <TimestampComponent
-            userId={user.id}
+            userId={props.user.id}
             type="profile"
         />;
     },
