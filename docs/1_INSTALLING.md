@@ -51,13 +51,13 @@ Build Vencord:
 pnpm build
 ```
 
-Inject vencord into your client:
+Inject Vencord into your client:
 
 ```shell
 pnpm inject
 ```
 
-Then fully close Discord from your taskbar or task manager, and restart it. Vencord should be injected - you can check this by looking for the Vencord section in Discord settings.
+Then fully close Discord from your taskbar or task manager, and restart it. Vencord should be injected. You can check this by looking for the Vencord section in Discord settings.
 
 ## Updating Vencord
 
@@ -71,9 +71,9 @@ To pull latest changes:
 git pull
 ```
 
-If this fails, you likely need to reset your local changes to vencord to resolve merge errors:
+If this fails, you likely need to reset your local changes to Vencord to resolve merge errors:
 
-> :exclamation: This command will remove any local changes you've made to vencord. Make sure you back up if you made any code changes you don't want to lose!
+> :exclamation: This command will remove any local changes you've made to Vencord. Make sure you back up if you made any code changes you don't want to lose!
 
 ```shell
 git reset --hard
