@@ -4,19 +4,17 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import * as DataStore from "@api/DataStore";
+import "./index.css";
+
 import { definePluginSettings } from "@api/Settings";
-import { disableStyle, enableStyle } from "@api/Styles";
+import ErrorBoundary from "@components/ErrorBoundary";
 import { Devs } from "@utils/constants";
-import definePlugin, { OptionType, Plugin } from "@utils/types";
-import { findStoreLazy } from "@webpack";
+import { fetchUserProfile } from "@utils/discord";
+import { Queue } from "@utils/Queue";
+import { useAwaiter } from "@utils/react";
+import definePlugin, { OptionType } from "@utils/types";
+import { useEffect, UserProfileStore, useStateFromStores } from "@webpack/common";
 import { User } from "discord-types/general";
-
-import style from "./index.css?managed";
-
-interface iUSRBG extends Plugin {
-    data: { [key: string]: string; };
-}
 
 const settings = definePluginSettings({
     animate: {
@@ -26,11 +24,37 @@ const settings = definePluginSettings({
     },
 });
 
-const DATASTORE_KEY = "bannersEverywhere";
+const discordQueue = new Queue();
+const usrbgQueue = new Queue();
 
-const UserProfileStore = findStoreLazy("UserProfileStore");
 
+const useFetchMemberProfile = (userId: string): string => {
+    const profile = useStateFromStores([UserProfileStore], () => UserProfileStore.getUserProfile(userId));
 
+    const usrbgUrl = (Vencord.Plugins.plugins.USRBG as any)?.getImageUrl(userId);
+
+    useEffect(() => {
+        if (usrbgUrl) return;
+        let cancel = false;
+
+        discordQueue.push(() => {
+            if (cancel) return Promise.resolve(void 0);
+            return fetchUserProfile(userId).finally(async () => {
+                await new Promise<void>(resolve => setTimeout(resolve, 1000));
+            });
+        });
+
+        return () => { cancel = true; };
+    }, []);
+
+    if (usrbgUrl) return usrbgUrl;
+
+    if (!profile?.banner) return "";
+    const extension = settings.store.animate && profile.banner.startsWith("a_")
+        ? ".gif"
+        : ".png";
+    return `https://cdn.discordapp.com/banners/${userId}/${profile.banner}${extension}`;
+};
 export default definePlugin({
     name: "BannersEverywhere",
     description: "Displays banners in the member list ",
@@ -43,7 +67,7 @@ export default definePlugin({
             {
                 // We add the banner as a property while we can still access the user id
                 match: /verified:(\i).isVerifiedBot.*?name:null.*?(?=avatar:)/,
-                replace: "$&banner:$self.memberListBannerHook($1),",
+                replace: "$&banner:$self.memberListBanner({user: $1}),",
             },
         },
         {
@@ -58,37 +82,36 @@ export default definePlugin({
 
     ],
 
-    data: {},
+    memberListBanner: ErrorBoundary.wrap(({ user }: { user: User; }) => {
+        const url = useFetchMemberProfile(user.id);
 
-    async start() {
-        enableStyle(style);
-        this.data = await DataStore.get(DATASTORE_KEY) || {};
-    },
+        const [shouldShow] = useAwaiter(async () => {
+            // This will get re-run when the url changes
+            if (!url || url === "") return false;
+            if (!settings.store.animate) {
+                // Discord cdn can return both png and gif, useFetchMemberProfile gives it respectively
+                if (url!.includes("cdn.discordapp.com")) return true;
 
-    stop() {
-        disableStyle(style);
-        DataStore.set(DATASTORE_KEY, this.data);
-    },
+                // HEAD request to check if the image is a png
+                return await new Promise(resolve => {
+                    usrbgQueue.push(() => fetch(url!.replace(".gif", ".png"), { method: "HEAD" }).then(async res => {
+                        console.log(res);
+                        await new Promise<void>(resolve => setTimeout(resolve, 1000));
+                        resolve(res.ok && res.headers.get("content-type")?.startsWith("image/png"));
+                        return;
+                    }));
+                });
+            }
+            return true;
+        }, { fallbackValue: false, deps: [url] });
 
-    memberListBannerHook(user: User) {
-        let url = this.getBanner(user.id);
-        if (!url) return;
-        if (!settings.store.animate) url = url.replace(".gif", ".png");
-
+        if (!shouldShow) return null;
         return (
             <img src={url} className="vc-banners-everywhere-memberlist"></img>
         );
-    },
+    }, { noop: true }),
 
-    getBanner(userId: string): string | undefined {
-        if (Vencord.Plugins.isPluginEnabled("USRBG") && (Vencord.Plugins.plugins.USRBG as iUSRBG).data[userId]) {
-            return (Vencord.Plugins.plugins.USRBG as iUSRBG).data[userId];
-        }
-        const userProfile = UserProfileStore.getUserProfile(userId);
-        if (userProfile?.banner) {
-            this.data[userId] = `https://cdn.discordapp.com/banners/${userId}/${userProfile.banner}.${userProfile.banner.startsWith("a_") ? "gif" : "png"}`;
-            DataStore.set(DATASTORE_KEY, this.data);
-        }
-        return this.data[userId];
-    },
+
+
+
 });
