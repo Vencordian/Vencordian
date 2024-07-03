@@ -33,6 +33,8 @@ A fork of the Discord client mod called Vencord that adds unapproved plugins.
 
 https://discord.gg/D9uwnFnqmd
 
+Note: Do not request support in the Discord server of Vencord for anything regarding Vencord+!
+
 ## Sponsors of Vencord
 
 |     **Thanks a lot to all Vencord [sponsors](https://github.com/sponsors/Vendicated)!!**     |
