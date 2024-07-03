@@ -6,7 +6,7 @@
 
 import { NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { DataStore } from "@api/index";
-import { Devs } from "@utils/constants";
+import { PlusDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { findStoreLazy } from "@webpack";
 import { Menu, showToast } from "@webpack/common";
@@ -46,7 +46,7 @@ function whitelistUser(user: User) {
 export default definePlugin({
     name: "DnDBypass",
     description: "Bypass DND for specified users",
-    authors: [Devs.mantikafasi],
+    authors: [PlusDevs.mantikafasi],
 
     patches: [
         {
