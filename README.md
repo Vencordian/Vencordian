@@ -20,6 +20,11 @@ A fork of the Discord client mod called Vencord that adds unapproved plugins.
 -   Settings sync: Keep your plugins and their settings synchronised between devices / apps (optional)
 
 
+## Additional (unapproved) plugins [Vencord+]
+
+[Click here to see a list of the unapproved plugins Vencord+ makes available to you.](https://github.com/RobinRMC/VencordPlus/tree/main/src/plusplugins)
+
+
 ## Installing / Uninstalling
 
 [![Download and run the installer](https://img.shields.io/github/v/release/RobinRMC/VencordPlusInstaller?label=Download%20Vencord%2B%20Installer&style=for-the-badge)](https://github.com/RobinRMC/VencordPlusInstaller#vencord-installer)
