@@ -34,7 +34,7 @@ export default definePlugin({
         return (
             <>
                 {versions.node && <Component {...props}>Node {versions.node}</Component>}
-                <Component {...props}>${gitRemote}</Component>
+                <Component {...props}>{gitRemote}</Component>
             </>
         );
     }
