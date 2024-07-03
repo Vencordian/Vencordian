@@ -51,7 +51,7 @@ const NotificationLogIcon = iconWithTooltip(LogIcon, "Open Notification Log");
 const QuickCssIcon = iconWithTooltip(PaintbrushIcon, "Edit QuickCSS");
 const RelaunchIcon = iconWithTooltip(RestartIcon, "Relaunch Discord");
 const OpenSettingsDirIcon = iconWithTooltip(FolderIcon, "Open Settings Directory");
-const OpenGithubIcon = iconWithTooltip(GithubIcon, "View Vencord's GitHub Repository");
+const OpenGithubIcon = iconWithTooltip(GithubIcon, "View Vencord+'s GitHub Repository");
 
 function VencordSettings() {
     const [settingsDir, , settingsDirPending] = useAwaiter(VencordNative.settings.getSettingsDir, {
