@@ -16,8 +16,7 @@ let data = {
 
 const settings = definePluginSettings({
     preferNitro: {
-        description:
-            "Which avatar to use if both default animated (Nitro) pfp and UserPFP avatars are present",
+        description: "Which avatar to use if both default animated (Nitro) pfp and UserPFP avatars are present",
         type: OptionType.SELECT,
         options: [
             { label: "UserPFP", value: false },
@@ -43,6 +42,10 @@ export default definePlugin({
             <Link href="https://userpfp.github.io/UserPFP/#how-to-request-a-profile-picture-pfp">
                 <b>Submit your own PFP here!</b>
             </Link>
+            <br></br>
+            <Link href="https://ko-fi.com/coolesding">
+                <b>Support UserPFP here!</b>
+            </Link>
         </>
     ),
     patches: [
@@ -53,10 +56,6 @@ export default definePlugin({
                 {
                     match: /(getUserAvatarURL:)(\i),/,
                     replace: "$1$self.getAvatarHook($2),"
-                },
-                {
-                    match: /(getUserAvatarURL:\i\(\){return )(\i)}/,
-                    replace: "$1$self.getAvatarHook($2)}"
                 }
             ]
         }

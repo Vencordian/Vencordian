@@ -1,3 +1,9 @@
+/*
+ * Vencord, a Discord client mod
+ * Copyright (c) 2024 Vendicated and contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 import { Devs } from "@utils/constants";
 import { proxyLazy } from "@utils/lazy";
 import definePlugin from "@utils/types";
@@ -20,7 +26,7 @@ const { useModalContext, useModalsStore } = proxyLazy(() => Forms as any as {
 });
 
 const { animated, useSpring, useTransition } = findByPropsLazy("a", "animated", "useTransition");
-const { default: AppLayer } = findByPropsLazy("AppLayerContainer", "AppLayerProvider");
+// const { default: AppLayer } = findByPropsLazy("AppLayerContainer", "AppLayerProvider");
 
 const ANIMS = {
     SUBTLE: {
@@ -71,7 +77,8 @@ export default definePlugin({
     MainWrapper(props: object) {
         const context = useModalContext();
         const modals = useModalsStore(modals => modals[context] ?? []);
-        const modal = modals.findLast(modal => modal.Layer == null || modal.Layer === AppLayer);
+        // const modal = modals.findLast(modal => modal.Layer == null || modal.Layer === AppLayer);
+        const modal = modals.findLast(modal => modal.Layer == null);
         const anim = ANIMS[modal?.backdropStyle ?? "DARK"];
         const isInstant = modal?.instant;
         const prevIsInstant = usePrevious(isInstant);

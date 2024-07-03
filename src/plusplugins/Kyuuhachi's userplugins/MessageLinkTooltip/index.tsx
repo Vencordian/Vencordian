@@ -1,3 +1,9 @@
+/*
+ * Vencord, a Discord client mod
+ * Copyright (c) 2024 Vendicated and contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 import "./style.css";
 
 import ErrorBoundary from "@components/ErrorBoundary";
@@ -32,7 +38,7 @@ const { Spinner } = proxyLazy(() => Forms as any as {
     SpinnerTypes: typeof SpinnerTypes;
 });
 
-const ChannelMessage = findComponentByCodeLazy("renderSimpleAccessories)") as ComponentType<any>;
+const ChannelMessage = findComponentByCodeLazy("childrenExecutedCommand:", ".hideAccessories");
 
 export default definePlugin({
     name: "MessageLinkTooltip",
@@ -43,7 +49,7 @@ export default definePlugin({
         {
             find: ',className:"channelMention",children:[',
             replacement: {
-                match: /(?<=\.jsxs\)\()(\i\.default)/,
+                match: /(?<=\.jsxs\)\()(\i\.\i)/,
                 replace: "$self.wrapComponent(arguments[0], $1)"
             }
         }
@@ -51,7 +57,7 @@ export default definePlugin({
 
     wrapComponent({ messageId, channelId }, Component: ComponentType) {
         return props => {
-            if(messageId === undefined) return <Component {...props} />;
+            if (messageId === undefined) return <Component {...props} />;
             return <Tooltip
                 tooltipClassName="c98-message-link-tooltip"
                 text={
@@ -79,7 +85,7 @@ function MessagePreview({ channelId, messageId }) {
     const channel = ChannelStore.getChannel(channelId);
     const message = useMessage(channelId, messageId);
     // TODO handle load failure
-    if(!message) {
+    if (!message) {
         return <Spinner type={Spinner.Type.PULSING_ELLIPSIS} />;
     }
 
@@ -93,12 +99,13 @@ function MessagePreview({ channelId, messageId }) {
 
 function useMessage(channelId, messageId) {
     const cachedMessage = useStateFromStores(
+        // @ts-ignore
         [MessageStore],
         () => MessageStore.getMessage(channelId, messageId)
     );
     const [message, setMessage] = useState(cachedMessage);
     useEffect(() => {
-        if(message == null)
+        if (message == null)
             (async () => {
                 const res = await RestAPI.get({
                     url: `/channels/${channelId}/messages`,

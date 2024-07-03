@@ -6,6 +6,7 @@
 
 import { findByProps } from "@webpack";
 
+
 export default ({ error }: { error?: Error; } = {}) => {
     const classes = findByProps("emptyResultsWrap");
 

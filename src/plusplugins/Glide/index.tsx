@@ -187,6 +187,12 @@ const settings = definePluginSettings({
         default: "ffffff",
         component: () => <ColorPick propertyname="Brand"/>
     },
+    pastelStatuses: {
+        type: OptionType.BOOLEAN,
+        description: "Changes the status colors to be more pastel (fits with the catppuccin presets)",
+        default: true,
+        onChange: () => injectCSS()
+    },
     DevTools:
     {
         type: OptionType.COMPONENT,
@@ -527,6 +533,26 @@ function getCSS(fontName)
                 {
                     color: var(--mutedtext) !important
                 }
+                    
+                ${settings.store.pastelStatuses ?
+                `
+                    /*Pastel statuses*/
+                    rect[fill='#23a55a'], svg[fill='#23a55a'] {
+                        fill: #80c968 !important;
+                    }
+                    rect[fill='#f0b232'], svg[fill='#f0b232'] {
+                        fill: #e7ca45 !important;
+                    }
+                    rect[fill='#f23f43'], svg[fill='#f23f43'] {
+                        fill: #e0526c !important;
+                    }
+                    rect[fill='#80848e'], svg[fill='#80848e'] {
+                        fill: #696e88 !important;
+                    }
+                    rect[fill='#593695'], svg[fill='#593695'] {
+                        fill: #ac7de6 important;
+                    }
+                ` : ""}
 
         /*ROUNDING (rounding)*/
 
@@ -678,6 +704,10 @@ function getCSS(fontName)
                 [class="userPopoutInner_c69a7b userProfileInner_c69a7b userProfileInnerThemedWithBanner_c69a7b"]::before
                 {
                 border-radius: 20px;
+                }
+                .footer_be6801
+                {
+                    display: none !important;
                 }
 
         /*STYLING (Modification of content to fit the theme)*/

@@ -37,6 +37,18 @@ const settings = definePluginSettings({
     },
 });
 
+function encodeStreamKey(stream) {
+    const { streamType, guildId, channelId, ownerId } = stream;
+    switch (streamType) {
+        case "guild":
+            return [streamType, guildId, channelId, ownerId].join(":");
+        case "call":
+            return [streamType, channelId, ownerId].join(":");
+        default:
+            throw console.log("Unknown stream type ".concat(streamType));
+    }
+}
+
 function Watching({ userIds, guildId }: WatchingProps): JSX.Element {
     // Missing Users happen when UserStore.getUser(id) returns null -- The client should automatically cache spectators, so this might not be possible but it's better to be sure just in case
     let missingUsers = 0;
@@ -62,9 +74,6 @@ function Watching({ userIds, guildId }: WatchingProps): JSX.Element {
 }
 
 const ApplicationStreamingStore = findStoreLazy("ApplicationStreamingStore");
-const { encodeStreamKey }: {
-    encodeStreamKey: (any) => string;
-} = findByPropsLazy("encodeStreamKey");
 
 const UserSummaryItem = findComponentByCodeLazy("defaultRenderUser", "showDefaultAvatarsForNullUsers");
 const AvatarStyles = findByPropsLazy("moreUsers", "emptyUser", "avatarContainer", "clickableAvatar");
@@ -80,8 +89,8 @@ export default definePlugin({
         {
             find: ".Masks.STATUS_SCREENSHARE,width:32",
             replacement: {
-                match: /default:function\(\)\{return (\i)\}/,
-                replace: "default:function(){return $self.component({OriginalComponent:$1})}"
+                match: /(\i):function\(\)\{return (\i)\}/,
+                replace: "$1:function(){return $self.component({OriginalComponent:$2})}"
             }
         },
         {

@@ -37,6 +37,7 @@ export default new (class NoteHandler {
         };
     }
 
+
     public getNotes(notebook?: string): Record<string, HolyNotes.Note> {
         return noteHandlerCache.get(notebook);
     }
@@ -205,6 +206,6 @@ export default new (class NoteHandler {
             message: "Successfully imported notes.",
             type: Toasts.Type.SUCCESS,
         });
+
     };
 });
-
