@@ -604,13 +604,9 @@ export const EquicordDevs = Object.freeze({
         name: "MrDiamond",
         id: 523338295644782592n
     },
-    fres: {
+    Fres: {
         name: "fres",
         id: 843448897737064448n
-    },
-    arHSM: {
-        name: "arHSM",
-        id: 841509053422632990n
     },
     Dams: {
         name: "Dams",
@@ -624,17 +620,13 @@ export const EquicordDevs = Object.freeze({
         name: "Perny",
         id: 1101508982570504244n,
     },
-    jaxx: {
+    Jaxx: {
         name: "Jaxx",
         id: 901016640253227059n,
     },
     Balaclava: {
         name: "Balaclava",
         id: 854886148455399436n
-    },
-    Moxxie: {
-        name: "Moxxie",
-        id: 712653921692155965n,
     },
     dat_insanity: {
         name: "dat_insanity",
@@ -647,14 +639,6 @@ export const EquicordDevs = Object.freeze({
     KrystalSkull: {
         name: "krystalskullofficial",
         id: 929208515883569182n
-    },
-    puv: {
-        name: "puv",
-        id: 469441552251355137n
-    },
-    HAPPY_ENDERMAN: {
-        name: "Happy enderman",
-        id: 1083437693347827764n
     },
     SerStars: {
         name: "SerStars",
@@ -672,9 +656,9 @@ export const EquicordDevs = Object.freeze({
         name: "Combatmaster331",
         id: 790562534503612437n
     },
-    VISHNYA_NET_CHERESHNYA: {
-        name: "Vishnya",
-        id: 282541644484575233n,
+    Megal: {
+        name: "Megal",
+        id: 387790666484285441n
     },
     Cortex: {
         name: "Cortex",
@@ -720,10 +704,6 @@ export const EquicordDevs = Object.freeze({
         name: "Fafa",
         id: 428188716641812481n,
     },
-    camila: {
-        name: "camila314",
-        id: 738592270617542716n,
-    }
 } satisfies Record<string, Dev>);
 
 export const PlusDevs = /* #__PURE__*/ Object.freeze({
