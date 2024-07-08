@@ -5,7 +5,7 @@
  */
 
 import { definePluginSettings } from "@api/Settings";
-import { EquicordDevs } from "@utils/constants";
+import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 
 import { getStyle } from "./style";
@@ -41,10 +41,11 @@ const settings = definePluginSettings({
 });
 
 export default definePlugin({
-    name: "DoNotLeak",
+    name: "DoNotLeak!",
     tags: ["DontLeak"],
-    description: "Hide all message contents and attachments when you're streaming or sharing your screen.",
-    authors: [EquicordDevs.Perny],
+    description:
+        "Hide all message contents and attachments when you're streaming or sharing your screen.",
+    authors: [Devs.Perny],
     settings,
     start() {
         const styles = getStyle();
