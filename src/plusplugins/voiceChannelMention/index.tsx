@@ -25,7 +25,12 @@ async function getVoiceChannelMentions(channel: Channel) {
 export default definePlugin({
     name: "VoiceChatMention",
     description: "Adds a context menu button to put mentions of all users in a voice chat in the text box.",
-    authors: [Devs.nickwoah],
+    authors: [
+        {
+            id: 644298972420374528n,
+            name: "Nick"
+        }
+    ],
     contextMenus: {
         "channel-context"(children, { channel }: { channel: Channel; }) {
             if (channel.isVocal()) children.push(
