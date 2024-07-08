@@ -24,7 +24,7 @@ import { DevsById, SuncordDevsById, EquicordDevsById, PlusDevsById, PlusMtsById 
  * Calls .join(" ") on the arguments
  * classes("one", "two") => "one two"
  */
-export function classes(...classes: Array<string | null | undefined>) {
+export function classes(...classes: Array<string | null | undefined | false>) {
     return classes.filter(Boolean).join(" ");
 }
 
