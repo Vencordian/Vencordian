@@ -29,6 +29,8 @@ A fork of the Discord client mod called Vencord that adds unapproved plugins.
 
 [![Download and run the installer](https://img.shields.io/github/v/release/RobinRMC/VencordPlusInstaller?label=Download%20Vencord%2B%20Installer&style=for-the-badge)](https://github.com/RobinRMC/VencordPlusInstaller#vencord-installer)
 
+[![Download and install Vesktop+](https://img.shields.io/github/v/release/RobinRMC/VesktopPlus?label=Download%20Vesktop%2B&style=for-the-badge)](https://github.com/RobinRMC/VesktopPlus#installing-vesktop)
+
 ## Join the support/community server of Vencord
 
 https://discord.gg/D9uwnFnqmd
