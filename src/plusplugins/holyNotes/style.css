@@ -127,7 +127,7 @@ $modifier: var(--background-modifier-accent);
 }
 
 .vc-notebook-tabbar-item:hover {
-    border-bottom-color: var(--brand-500);
+    border-bottom-color: var(--brand-experiment);
 }
 
 .vc-notebook-top-section {
