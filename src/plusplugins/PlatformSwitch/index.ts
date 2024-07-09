@@ -24,7 +24,7 @@ import {Logger} from "./libs/Logger";
 import {ActivityPacket} from "./types/ActivityPacket";
 
 export default definePlugin({
-    name: "PlatformSwitch"
+    name: "PlatformSwitch",
     description: "Switch client platform",
     authors: [
         {
