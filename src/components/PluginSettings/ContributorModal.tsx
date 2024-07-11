@@ -90,11 +90,11 @@ function ContributorModal({ user }: { user: User; }) {
 
             {plugins.length ? (
                 <Forms.FormText>
-                    This person has {ContributedHyperLink} to {pluralise(plugins.length, "plugin")}!
+                    {user.username} has {ContributedHyperLink} to {pluralise(plugins.length, "plugin")}!
                 </Forms.FormText>
             ) : (
                 <Forms.FormText>
-                    This person has not made any plugins. They likely {ContributedHyperLink} to Vencord+ in other ways!
+                    {user.username} has not made any plugins. They likely {ContributedHyperLink} to Vencord+ in other ways!
                 </Forms.FormText>
             )}
 
