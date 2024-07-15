@@ -21,6 +21,8 @@ jobs:
 
         steps:
             - uses: actions/checkout@v4
+              with:
+                ref: ${{ github.ref }}
 
             - uses: pnpm/action-setup@v3 # Install pnpm using packageManager key in package.json
 
