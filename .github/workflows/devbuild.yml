@@ -2,6 +2,7 @@ name: Build DevBuild
 on:
     push:
         branches:
+            - main
             - development
         paths:
             - .github/workflows/build.yml
