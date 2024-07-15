@@ -5,6 +5,7 @@ on:
             - main
         paths:
             - .github/workflows/build.yml
+            - .github/workflows/devbuild.yml
             - src/**
             - browser/**
             - scripts/build/**
