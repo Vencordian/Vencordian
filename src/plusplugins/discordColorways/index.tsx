@@ -9,7 +9,7 @@ import { addAccessory, removeAccessory } from "@api/MessageAccessories";
 import { addServerListElement, removeServerListElement, ServerListRenderPosition } from "@api/ServerList";
 import { disableStyle, enableStyle } from "@api/Styles";
 import { Flex } from "@components/Flex";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs } from "@utils/constants";
 import { ModalProps, openModal } from "@utils/modal";
 import definePlugin from "@utils/types";
 import {
@@ -128,7 +128,7 @@ export const versionData = {
 export default definePlugin({
     name: "DiscordColorways",
     description: "A plugin that offers easy access to simple color schemes/themes for Discord, also known as Colorways",
-    authors: [EquicordDevs.DaBluLite, Devs.ImLvna],
+    authors: [Devs.DaBluLite, Devs.ImLvna],
     dependencies: ["ServerListAPI", "MessageAccessoriesAPI"],
     pluginVersion: versionData.pluginVersion,
     creatorVersion: versionData.creatorVersion,
