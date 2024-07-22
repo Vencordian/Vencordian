@@ -1,3 +1,4 @@
+import { WEBPACK_CHUNK } from "@utils/constants";
 import { definePluginSettings } from "@api/Settings";
 import { Devs } from "@utils/constants";
 import { makeLazy } from "@utils/lazy";
@@ -38,29 +39,25 @@ export default definePlugin({
 
 export const getBuildNumber = makeLazy(() => {
     try {
-        const initSentry = findByProps("initSentry").initSentry.toString();
-        const [, buildNumber] = initSentry.match(/\.setTag\("buildNumber",\(\w+="(\d+)","\1"\)\)/);
-        const [, builtAt] = initSentry.match(/\.setTag\("builtAt",String\("(\d+)"\)\)/);
+        const metrics = findByProps("_getMetricWithDefaults")._flush.toString();
+        const [, builtAt, buildNumber] = metrics.match(/\{built_at:"(\d+)",build_number:"(\d+)"\}/);
         return { buildNumber, builtAt: new Date(Number(builtAt)) };
     } catch(e) {
-        console.error(e);
+        console.error("failed to get build number:", e);
         return { buildNumber: "unknown", builtAt: new Date() };
     }
 });
 
-function saveTar(patched: boolean) {
+async function saveTar(patched: boolean) {
     const tar = new TarFile();
     const { buildNumber, builtAt } = getBuildNumber();
     const mtime = (builtAt.getTime() / 1000)|0;
-    // wreq.m is missing a few modules for unknown reasons, so need to grab them like this
-    const webpack = window.webpackChunkdiscord_app as any[];
-    const modules: Record<string, any> = Object.assign({}, ...webpack.map(a => a[1]));
 
     const root = patched ? `vencord-${buildNumber}` : `discord-${buildNumber}`;
 
-    for(const [id, module] of Object.entries(modules)) {
-        const patchedSrc = module.toString();
-        const originalSrc = (module.original ?? module).toString();
+    for(const [id, module] of Object.entries(wreq.m)) {
+        const patchedSrc = Function.toString.call(module);
+        const originalSrc = module.toString();
         if(patched && patchedSrc != originalSrc)
             tar.addTextFile(
                 `${root}/${id}.v.js`,
@@ -123,7 +120,7 @@ function TarModal({ modalProps, close }: { modalProps: ModalProps; close(): void
                             disabled={loading === all || isLoading}
                             onClick={async () => {
                                 setLoading(true);
-                                await Webpack.protectWebpack(window.webpackChunkdiscord_app as any[], async () => {
+                                await Webpack.protectWebpack(window[WEBPACK_CHUNK], async () => {
                                     await Webpack.forceLoadAll(wreq, rerender);
                                 });
                             }}
