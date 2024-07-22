@@ -4,13 +4,16 @@ const PLUGINS = [
     require("./Anammox").default,
     require("./ColorMessage").default,
     require("./DeadMembers").default,
+    require("./HistoryModal").default,
     require("./MessageLinkTooltip").default,
     require("./ModalFade").default,
+    require("./Shiggy").default,
     require("./NotificationTitle").default,
     require("./TeX").default,
     require("./Title").default,
     require("./ViewRaw2").default,
     require("./WebpackTarball").default,
+    require("./experimental/DevTools").default,
     require("./Classify").default,
 ];
 
