@@ -34,7 +34,7 @@ export default definePlugin({
                 if (!state.guildId) return;
                 if (!(state.mute && !state.selfMute)) return;
                 if (!PermissionStore.canWithPartialContext(PermissionsBits.MUTE_MEMBERS, { channelId: state.channelId })) return;
-                toggleSelfMute({ playSoundEffect: false });
+                toggleSelfMute({ playSoundEffect: true });
                 setServerMute(state.guildId, state.userId, false);
             });
         }
