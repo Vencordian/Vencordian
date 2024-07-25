@@ -211,7 +211,7 @@ export const Devs = /* #__PURE__*/ Object.freeze({
     },
     nick: {
         name: "nick",
-        id: 347884694408265729n
+        id: 347884694408265729n,
         badge: false
     },
     whqwert: {
