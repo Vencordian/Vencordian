@@ -7,6 +7,6 @@ body:
     id: link
     attributes:
       label: Link
-      placeholder: [Optional] Provide a link to the plugin
+      placeholder: "[Optional] Provide a link to the plugin"
     validations:
       required: false
