@@ -312,7 +312,7 @@ function getCSS(fontName)
         ` : ""}
         /*Privacy blur*/
         ${Settings.plugins.Glide.privacyBlur ? `
-                .header_ec86aa,
+                .header_f9f2ca,
                 .container_ee69e0,
                 .title_a7d72e,
                 .layout_f9647d,
@@ -321,7 +321,7 @@ function getCSS(fontName)
                 transition: filter 0.2s ease-in-out; 
                 }
 
-                body:not(:hover) .header_ec86aa,
+                body:not(:hover) .header_f9f2ca,
                 body:not(:hover) .container_ee69e0,
                 body:not(:hover) .title_a7d72e,
                 body:not(:hover) [aria-label="Members"],
@@ -343,7 +343,7 @@ function getCSS(fontName)
             --bgcol: #${Settings.plugins.Glide.Primary};
             --text: #${Settings.plugins.Glide.Text};
             --brand: #${Settings.plugins.Glide.Brand};
-            --mutedtext: ${mute(Settings.plugins.Glide.Text, 10)};
+            --mutedtext: ${mute(Settings.plugins.Glide.Text, 20)};
             --mutedbrand: ${mute(Settings.plugins.Glide.Brand, 10)};
             --mutedaccent: ${mute(Settings.plugins.Glide.Accent, 10)};
         }
@@ -533,7 +533,14 @@ function getCSS(fontName)
                 {
                     color: var(--mutedtext) !important
                 }
-                    
+                .menu_d90b3d
+                {
+                    background: var(--accent) !important;
+                }
+                .messageGroupWrapper_ac90a2, .header_ac90a2
+                {
+                    background-color: var(--primary);
+                }
                 ${settings.store.pastelStatuses ?
                 `
                     /*Pastel statuses*/
@@ -553,6 +560,14 @@ function getCSS(fontName)
                         fill: #ac7de6 important;
                     }
                 ` : ""}
+                .name_d8bfb3
+                {
+                    color: var(--text) !important;
+                }
+                .unread_d8bfb3
+                {
+                    background-color: var(--text) !important;
+                }
 
         /*ROUNDING (rounding)*/
 
@@ -626,7 +641,7 @@ function getCSS(fontName)
                 }
                 
                 /*No more useless spotify activity header*/
-                .headerContainer_d5089b
+                .headerContainer_c1d9fd
                 {
                     display: none;
                 }
@@ -648,7 +663,7 @@ function getCSS(fontName)
                 }
 
                 /*Hide icon on file uploading status*/
-                .icon_a4623d
+                .icon_b52bef
                 {
                     display: none;
                 }
@@ -669,12 +684,12 @@ function getCSS(fontName)
                     padding: 6px 8px !important;
                 }        
                 /*Hide the icon that displays what platform the user is listening with on spotify status*/
-                .platformIcon_d5089b
+                .platformIcon_c1d9fd
                 {
                     display: none !important;
                 }
                 /*hide the album name on spotify statuses (who cares)*/
-                [class="state_d5089b ellipsis_d5089b textRow_d5089b"]
+                [class="state_c1d9fd ellipsis_c1d9fd textRow_c1d9fd"]
                 {
                     display: none;
                 }
@@ -802,5 +817,3 @@ export default definePlugin({
     // preview thing, kinda low effort but eh
     settingsAboutComponent: () => <img src="https://files.catbox.moe/j8y2gt.webp" width="568px" border-radius="30px" ></img>
 });
-
-
