@@ -13,8 +13,9 @@
   <a href="https://discord.gg/ffmkewQ4R7"><img src="https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white" alt="Discord Server"></a>
   <br>
   <h6><strong>Support For There Clients</strong></h6>
-  <a href="https://vencord.dev"><img src="https://i.imgur.com/O9cPuLV.png" alt="Vencord" width="50"></a>
   <a href="https://github.com/pyoncord/Bunny"><img src="https://i.imgur.com/YjtQqBQ.png" alt="Pyoncord" width="50"></a>
+  <a href="https://vencord.dev"><img src="https://i.imgur.com/O9cPuLV.png" alt="Vencord" width="50"></a>
+  <a href="https://enmity.unbound.rip/"><img src="https://i.imgur.com/L1xE4Bd.png" alt="Enmity" width="50"></a>
 </div>
 
 ___
@@ -112,6 +113,7 @@ ___
  pnpm inject
  ```
  That all. Restart your Discord client and enjoy.
+
 </details>
 <details closed>
 <summary>Pyoncord</summary>
@@ -119,7 +121,18 @@ ___
 
  ### Install with plugin URL
  ```
- https://fakeprofile.sampath.tech/
+https://fakeprofile.sampath.tech/
+ ```
+</details>
+
+</details>
+<details closed>
+<summary>Enmity</summary>
+<br>
+
+ ### Install with Github raw URL:
+ ```
+ https://raw.githubusercontent.com/sampathgujarathi/bunny-plugin/master/src/index.tsx
  ```
 </details>
 
@@ -133,7 +146,7 @@ ___
 <summary>Click to read</summary>
 <br>
 
- - Go to [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
+ - Go to [#command](https://discord.com/channels/1117373291095662623/1215640671457771540)
  - Used `/profile banner upload` command like image below:
 
  <img src="https://i.imgur.com/AtYO0kW.png" alt="profile banner upload">
@@ -147,7 +160,7 @@ ___
 <summary>Click to read</summary>
 <br>
 
- - Go to [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
+ - Go to [#command](https://discord.com/channels/1117373291095662623/1215640671457771540)
  - Used `/profile avatar upload` command like image below:
 
  <img src="https://github.com/sampathgujarathi/fakeProfile/assets/66912066/cd39bd4c-7226-496e-b08e-1c1cd8f12e81" alt="profile avatar upload">
@@ -160,7 +173,7 @@ ___
 <summary>Click to read</summary>
 <br>
 
- - Go to [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
+ - Go to [#command](https://discord.com/channels/1117373291095662623/1215640671457771540)
  - Used command `/profile effects` `effects: Effect in options` like this:
 
   <img src="https://i.imgur.com/whE2fht.png" alt="profile effects">
@@ -178,7 +191,7 @@ ___
 <summary>Choose default badges</summary>
 <br>
 
- - Go to [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
+ - Go to [#command](https://discord.com/channels/1117373291095662623/1215640671457771540)
  - Used command `/badges select` `name` like this:
 
  <img src="https://i.imgur.com/9EnyNxY.png" alt="/badges select command">
@@ -190,7 +203,7 @@ ___
 <summary>Request custom badges</summary>
 <br>
 
- - Go to [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
+ - Go to [#command](https://discord.com/channels/1117373291095662623/1215640671457771540)
  - Used command `/badges add` `Name` `Icon` like this:
 
  <img src="https://i.imgur.com/7tB0Zfz.png" alt="/badges add command">
@@ -203,7 +216,7 @@ ___
 <summary>Click to read</summary>
 <br>
 
- - Go to [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
+ - Go to [#command](https://discord.com/channels/1117373291095662623/1215640671457771540)
  - Used `/badges view` like this image:
 
  <img src="https://i.imgur.com/tNYpOpv.png" alt="badges view commands">
@@ -220,7 +233,7 @@ ___
 <summary>Click to read</summary>
 <br>
 
- - Go to [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
+ - Go to [#command](https://discord.com/channels/1117373291095662623/1215640671457771540)
  - Used command `/profile decorations` `decoration: Decoration in options` like this:
 
   <img src="https://i.imgur.com/NVG7t5E.png" alt="avatar decorations">
@@ -250,7 +263,7 @@ ___
 <summary>Click to read</summary>
 <br>
 
- - Go to [#fakeprofile-commands](https://discord.com/channels/1117373291095662623/1215640671457771540)
+ - Go to [#command](https://discord.com/channels/1117373291095662623/1215640671457771540)
  - With **avatar** use `/profile avatar remove` command:
 
   <img src="https://i.imgur.com/5jqetBQ.png" alt="avatar remove">

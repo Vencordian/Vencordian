@@ -28,9 +28,6 @@ const cl = classNameFactory("vc-decoration-");
 import style from "./index.css?managed";
 import { AvatarDecoration, Colors, fakeProfileSectionProps, UserProfile, UserProfileData } from "./types";
 
-
-
-
 let UsersData = {} as Record<string, UserProfileData>;
 const UserBadges: Record<string, ProfileBadge[]> = {};
 const updateBadgesForAllUsers = () => {
@@ -48,7 +45,7 @@ const updateBadgesForAllUsers = () => {
                         description: badge.description,
                         props: {
                             style: {
-                                borderRadius: "15%",
+                                borderRadius: "50%",
                                 transform: "scale(0.9)"
                             }
                         },
@@ -136,7 +133,6 @@ async function loadfakeProfile(noCache = false) {
 function getUserEffect(profileId: string) {
     return UsersData[profileId] ? UsersData[profileId].profile_effect : null;
 }
-
 
 function encode(primary: number, accent: number): string {
     const message = `[#${primary.toString(16).padStart(6, "0")},#${accent.toString(16).padStart(6, "0")}]`;
@@ -493,9 +489,9 @@ export default definePlugin({
 
         <Forms.FormSection>
             <Forms.FormTitle tag="h3">Usage</Forms.FormTitle>
-            <Link href="https://github.com/sampathgujarathi/fakeProfile">Click here to get a profile effect, banner, animated profile picture or custom badges</Link>
+            <Link href="https://github.com/sampathgujarathi/fakeProfile?tab=readme-ov-file#tutorial-about-plugin">Click here to get a profile effect, banner, animated profile picture or custom badges</Link>
             <Forms.FormText>
-                Enable profile themes to use fake profile themes. <br />
+                Enable profile themes to use fake profile themes.<br />
                 To set your own colors:
                 <ul>
                     <li>• go to your profile settings</li>
@@ -597,8 +593,17 @@ export default definePlugin({
     },
     getAvatarHook: (original: any) => (user: User, animated: boolean, size: number) => {
         if (!settings.store.nitroFirst && user.avatar?.startsWith("a_")) return original(user, animated, size);
-
-        return UsersData[user.id]?.avatar ?? original(user, animated, size);
+        if (animated) {
+            return UsersData[user.id]?.avatar ?? original(user, animated, size);
+        } else {
+            const avatarUrl = UsersData[user.id]?.avatar;
+            if (avatarUrl && typeof avatarUrl === "string") {
+                const parsedUrl = new URL(avatarUrl);
+                const image_name = parsedUrl.pathname.split("/").pop()?.replace("a_", "");
+                return BASE_URL + "/image/" + image_name ?? original(user, animated, size);
+            }
+        }
+        return original(user, animated, size);
     },
     getAvatarDecorationURL({ avatarDecoration, canAnimate }: { avatarDecoration: AvatarDecoration | null; canAnimate?: boolean; }) {
         if (!avatarDecoration || !settings.store.enableAvatarDecorations) return;
