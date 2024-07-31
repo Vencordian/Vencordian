@@ -747,6 +747,18 @@ export const EquicordDevs = Object.freeze({
     ShadyGoat: {
         name: "Shady Goat",
         id: 376079696489742338n
+    },
+    Joona: {
+        name: "Joona",
+        id: 297410829589020673n
+    },
+    SimplyData: {
+        name: "SimplyData",
+        id: 301494563514613762n
+    },
+    keifufu: {
+        name: "keifufu",
+        id: 469588398110146590n
     }
 } satisfies Record<string, Dev>);
 
