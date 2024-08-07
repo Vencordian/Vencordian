@@ -19,74 +19,54 @@
 import { definePluginSettings } from "@api/Settings";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
-import { Button } from "@webpack/common";
 
-import { Emitter } from "../philsPluginLibrary";
+import { addSettingsPanelButton, Emitter, removeSettingsPanelButton, ScreenshareSettingsIcon } from "../philsPluginLibrary";
 import { PluginInfo } from "./constants";
 import { openScreenshareModal } from "./modals";
 import { ScreenshareAudioPatcher, ScreensharePatcher } from "./patchers";
 import { replacedScreenshareModalComponent } from "./patches";
 import { initScreenshareAudioStore, initScreenshareStore } from "./stores";
 
-var screensharePatcher;
-var screenshareAudioPatcher;
-
-const settings = definePluginSettings({
-    openSettings: {
-        description: "",
-        type: OptionType.COMPONENT,
-        component: (() => {
-            return (
-                <Button onClick={() => openScreenshareModal()}>Open Settings</Button>
-            );
-        })
-    }
-});
-
 export default definePlugin({
     name: "BetterScreenshare",
     description: "This plugin allows you to further customize your screen sharing.",
-    authors: [Devs.philhk, Devs.walrus],
+    authors: [Devs.philhk],
     dependencies: ["PhilsPluginLibrary"],
-    replacedScreenshareModalComponent: replacedScreenshareModalComponent,
-
     patches: [
         {
             find: "Messages.SCREENSHARE_RELAUNCH",
             replacement: {
-                match: /(function .{1,2}\(.{1,2}\){)(.{1,40}(?=selectGuild).+?(?:]}\)}\)))(})/,
+                match: /((?:.*)(?<=function) .{0,8}?(?={).)(.{0,10000}Z.getVoiceChannelId\(\).{0,10000}]}\)}\))(})/,
                 replace: "$1return $self.replacedScreenshareModalComponent(function(){$2}, this, arguments)$3"
             }
-        },
-        {
-            find: "Unknown resolution:",
-            replacement: [
-                {
-                    match: /throw Error\("Unknown resolution: ".concat\((\i)\)\)/,
-                    replace: "return $1;"
-                },
-                {
-                    match: /throw Error\("Unknown frame rate: ".concat\((\i)\)\)/,
-                    replace: "return $1;"
-                }
-            ]
         }
     ],
-
-    start() {
+    settings: definePluginSettings({
+        hideDefaultSettings: {
+            type: OptionType.BOOLEAN,
+            description: "Hide Discord screen sharing settings",
+            default: true,
+        }
+    }),
+    start(): void {
         initScreenshareStore();
         initScreenshareAudioStore();
-        screensharePatcher = new ScreensharePatcher().patch();
-        screenshareAudioPatcher = new ScreenshareAudioPatcher().patch();
-    },
+        this.screensharePatcher = new ScreensharePatcher().patch();
+        this.screenshareAudioPatcher = new ScreenshareAudioPatcher().patch();
 
-    stop() {
-        screensharePatcher?.unpatch();
-        screenshareAudioPatcher?.unpatch();
+        addSettingsPanelButton({
+            name: PluginInfo.PLUGIN_NAME,
+            icon: ScreenshareSettingsIcon,
+            tooltipText: "Screenshare Settings",
+            onClick: openScreenshareModal
+        });
+    },
+    stop(): void {
+        this.screensharePatcher?.unpatch();
+        this.screenshareAudioPatcher?.unpatch();
         Emitter.removeAllListeners(PluginInfo.PLUGIN_NAME);
+
+        removeSettingsPanelButton(PluginInfo.PLUGIN_NAME);
     },
-
-    settings,
+    replacedScreenshareModalComponent
 });
-
-export { screenshareAudioPatcher, screensharePatcher };

@@ -25,6 +25,13 @@ interface regexes{
 const regexes: regexes = {
     // matches imperial units, converts them to metric
     imperial: {
+        miles: {
+            regex: /(\d+(?:\.\d+)?) ?(mi(?:les)?)/gm,
+            convert(...groups) {
+                const km = (parseFloat(groups[1]) * 1.609).toFixed(2)
+                return `${km}km`
+            },
+        },
         farenheight: {
             regex: /(-?\d+(?:\.\d+)?)°?(f)(?!\w)/ig,
             convert(...groups) {
@@ -39,7 +46,7 @@ const regexes: regexes = {
         // },
         // leaving this one in because it is commonly used for something like 5'9'' for a persons height
         feetInchesMark: {
-            regex: /(\d+)(') ?(\d+(?:\.\d+)?)("|'')/g,
+            regex: /(\d+)(') ?(\d+(?:\.\d+)?)("|'')?/g,
             convert(...groups) {
                 let ftin = parseFloat(groups[1])/3.281;
                 ftin += parseFloat(groups[3])/39.37;
@@ -59,14 +66,14 @@ const regexes: regexes = {
             },
         },
         inchesWord: {
-            regex: /(?<!\d+ *(?:f(?:ee|oo)?t) *)(\d+(?:\.\d+)?) *(in(?:ches?)?)/ig,
+            regex: /(?<!\d+ *(?:f(?:ee|oo)?t) *)(\d+(?:\.\d+)?) *(in(?:ch(?:es)?)?)/ig,
             convert(...groups) {
-                const inches = (parseFloat(groups[1])/2.54).toFixed(2);
+                const inches = (parseFloat(groups[1])*2.54).toFixed(2);
                 return `${inches}cm`;
             },
         },
         feetInchesWord: {
-            regex: /(\d+) *(f(?:ee|oo)?t) *(\d+(?:\.\d+)?) *(in(?:ches?)?)/ig,
+            regex: /(\d+) *(f(?:ee|oo)?t) *(\d+(?:\.\d+)?) *(in(?:ch(?:es)?)?)/ig,
             convert(...groups) {
                 let ftin = parseFloat(groups[1])/3.281;
                 ftin += parseFloat(groups[3])/39.37;

@@ -4,17 +4,13 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { showNotification } from "@api/Notifications";
 import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 import { makeContextItem } from "./components";
 import settings, { folderIconsData } from "./settings";
-import { int2rgba } from "./util";
-export interface folderProp {
-    folderId: string;
-    folderColor: number;
-}
+import { folderProp, int2rgba } from "./util";
+
 export default definePlugin({
     settings,
     name: "CustomFolderIcons",
@@ -38,8 +34,7 @@ export default definePlugin({
         }
     },
     shouldReplace(props: any): boolean{
-        const folderSettings = (settings.store.folderIcons as folderIconsData);
-        return !!(folderSettings?.[props.folderNode.id]?.url);
+        return !!((settings.store.folderIcons as folderIconsData)?.[props.folderNode.id]?.url);
     },
     replace(props: any){
         const folderSettings = (settings.store.folderIcons as folderIconsData);
@@ -48,7 +43,7 @@ export default definePlugin({
             return (
                 <div
                     style={{
-                        backgroundColor: int2rgba(props.folderNode.color, .4),
+                        backgroundColor: int2rgba(props.folderNode.color, +settings.store.solidIcon || .4),
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",

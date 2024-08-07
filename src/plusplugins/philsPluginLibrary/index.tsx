@@ -25,19 +25,25 @@ export default definePlugin({
     name: "PhilsPluginLibrary",
     description: "A library for phil's plugins",
     authors: [Devs.philhk],
-    replacedUserPanelComponent: replacedUserPanelComponent,
-
-    patches: [
-        {
-            find: "Messages.ACCOUNT_A11Y_LABEL",
-            replacement: {
-                match: /(?<=function)( .{0,8}(?={).)(.{0,1000}isFullscreenInContext\(\).+?\)]}\))(})/,
-                replace: "$1return $self.replacedUserPanelComponent(function(){$2}, this, arguments)$3"
-            }
+    patches: [{
+        find: "Messages.ACCOUNT_A11Y_LABEL",
+        replacement: {
+            match: /((?:.*)(?<=function) .{0,8}?(?={).)(.{0,1000}ACCOUNT_PANEL.{0,1000}\)]}\))(})/,
+            replace: "$1return $self.replacedUserPanelComponent(function(){$2}, this, arguments)$3"
         }
-    ],
+    }, {
+        find: "Unknown frame rate",
+        replacement: [{
+            match: /(switch\((.{0,10})\).{0,1000})(throw Error\(.{0,100}?Unknown resolution.{0,100}?\))(?=})/,
+            replace: "$1return $2"
+        },
+        {
+            match: /(switch\((.{0,10})\).{0,1000})(throw Error\(.{0,100}?Unknown frame rate.{0,100}?\))(?=})/,
+            replace: "$1return $2"
+        }]
+    }],
+    replacedUserPanelComponent,
 });
-
 
 export * from "./components";
 export * from "./discordModules";
