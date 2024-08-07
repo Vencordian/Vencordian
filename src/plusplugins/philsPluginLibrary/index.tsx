@@ -24,7 +24,12 @@ import { replacedUserPanelComponent } from "./patches";
 export default definePlugin({
     name: "PhilsPluginLibrary",
     description: "A library for phil's plugins",
-    authors: [Devs.philhk],
+    authors: [
+        {
+            name: "philhk",
+            id: 305288513941667851n
+        }
+    ],
     patches: [{
         find: "Messages.ACCOUNT_A11Y_LABEL",
         replacement: {
