@@ -32,7 +32,7 @@ import { conversions,ConverterAccessory, ConvertIcon } from "./ConverterAccessor
 export const settings = definePluginSettings({
     myUnits: {
         type: OptionType.SELECT,
-        description: "the units you use and want things converted to. defaults to imperial",
+        description: "The units you use and want things to be converted to. (Defaults to imperial)",
         options: [
             {
                 default: true,
@@ -54,7 +54,7 @@ export const settings = definePluginSettings({
 });
 export default definePlugin({
     name: "UnitConverter",
-    description: "Converts metric units to Imperal units and vice versa",
+    description: "Converts metric units to imperial units and vice versa",
     authors: [
         {
             name: "sadan",
