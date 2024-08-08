@@ -35,7 +35,7 @@ Set = new Proxy(Set, {
             for(const plugin of PLUGINS) {
                 Plugins[plugin.name] = plugin;
                 PluginMeta[plugin.name] = {
-                    userPlugin: myMeta.userPlugin,
+                    plusPlugin: myMeta.plusPlugin,
                     folderName: myMeta.folderName + "/" + plugin.name,
                 };
             }
