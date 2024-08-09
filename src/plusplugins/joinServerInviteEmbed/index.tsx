@@ -22,7 +22,7 @@ function InviteEmbedWrapper({ code }: { code: string; }) {
 export default definePlugin({
     name: "JoinServerInviteEmbed",
     description: "Replaces something (description is missing)",
-    enabledByDefault: true,
+    enabledByDefault: false,
     authors: [Devs.Sqaaakoi],
     patches: [
         {
