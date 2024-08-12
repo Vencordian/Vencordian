@@ -23,7 +23,7 @@ import { replacedUserPanelComponent } from "./patches";
 
 export default definePlugin({
     name: "PhilsPluginLibrary",
-    description: "A library for phil's plugins",
+    description: "A library for Phil's plugins",
     authors: [
         {
             name: "philhk",

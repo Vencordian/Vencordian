@@ -12,7 +12,7 @@ import { openNewPluginsModal } from "./NewPluginsModal";
 
 export default definePlugin({
     name: "NewPluginsManager",
-    description: "Utility that notifies you when new plugins are added to Vencord",
+    description: "Utility that notifies you when new plugins are added to your installation",
     authors: [Devs.Sqaaakoi],
     enabledByDefault: true,
     flux: {
