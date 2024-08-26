@@ -2,7 +2,7 @@
  * Vencord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
- */
+*/
 
 import { NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { definePluginSettings } from "@api/Settings";
@@ -127,7 +127,7 @@ const AudioDeviceContextMenuPatch: NavContextMenuPatchCallback = (children, prop
                     )}
                 />
                 <Menu.MenuCheckboxItem
-                    checked={isEnabled}
+                    checked={nonFriendJoinsChannel}
                     id="vc-auto-mute-non-friends"
                     label="Mute when non-friend joins"
                     action={() => {
