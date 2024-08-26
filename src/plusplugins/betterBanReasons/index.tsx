@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import "./styles.css";
+import "./style.css";
 
 import { definePluginSettings } from "@api/Settings";
 import { Devs } from "@utils/constants";
@@ -24,7 +24,7 @@ function ReasonsComponent() {
                         type="text"
                         key={index}
                         value={reason}
-                        onChange={(v: string) => {
+                        onChange={v => {
                             reasons[index] = v;
                             settings.store.reasons = [...reasons];
                         }}
@@ -44,8 +44,7 @@ function ReasonsComponent() {
             ))}
             <Button
                 onClick={() => {
-                    reasons.push("");
-                    settings.store.reasons = [...reasons];
+                    settings.store.reasons = [...reasons, ""];
                 }}
             >
                 Add new
@@ -73,27 +72,28 @@ export default definePlugin({
     authors: [Devs.Inbestigator],
     patches: [
         {
-            find: /\i\.\i\.Messages\.BAN_MULTIPLE_CONFIRM_TITLE/,
+            find: "Messages.BAN_MULTIPLE_CONFIRM_TITLE",
             replacement: [{
-                match: /=\[[^]*?\]/,
-                replace: "=$self.getReasons()"
+                match: /\[\{name:\i\.\i\.Messages\.BAN_REASON_OPTION_SPAM_ACCOUNT.+?\}\]/,
+                replace: "$self.getReasons()"
             },
             {
-                match: /useState\(0\)/,
-                replace: "useState($self.isOtherDefault())"
+                match: /useState\(0\)(?=.{0,100}targetUserId:)/,
+                replace: "useState($self.getDefaultState())"
             }]
         }
     ],
     getReasons() {
-        return (settings.store.reasons.length ? settings.store.reasons : [
-            i18n.Messages.BAN_REASON_OPTION_SPAM_ACCOUNT,
-            i18n.Messages.BAN_REASON_OPTION_HACKED_ACCOUNT,
-            i18n.Messages.BAN_REASON_OPTION_BREAKING_RULES
-        ]).map((reason: string) => (
-            { name: reason, value: reason }
-        ));
+        const reasons = settings.store.reasons.length
+            ? settings.store.reasons
+            : [
+                i18n.Messages.BAN_REASON_OPTION_SPAM_ACCOUNT,
+                i18n.Messages.BAN_REASON_OPTION_HACKED_ACCOUNT,
+                i18n.Messages.BAN_REASON_OPTION_BREAKING_RULES
+            ];
+        return reasons.map(s => ({ name: s, value: s }));
     },
-    isOtherDefault() {
+    getDefaultState() {
         return settings.store.textInputDefault ? 1 : 0;
     },
     settings,

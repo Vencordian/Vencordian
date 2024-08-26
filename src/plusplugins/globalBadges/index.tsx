@@ -52,7 +52,8 @@ const fetchBadges = (id: string): BadgeCache["badges"] | undefined => {
             .then(body => {
                 cache.set(id, { badges: body, expires: Date.now() + EXPIRES });
                 return body;
-            });
+            })
+            .catch(() => null);
     } else if (cachedValue) {
         return cachedValue.badges;
     }
@@ -65,7 +66,11 @@ const BadgeComponent = ({ name, img }: { name: string, img: string; }) => {
                 <img
                     {...tooltipProps}
                     src={img}
-                    style={{ width: "22px", height: "22px", transform: name.includes("Replugged") ? null : "scale(0.9)", margin: "0 1px" }}
+                    style={{
+                        width: "20px",
+                        height: "20px",
+                        transform: name.includes("Replugged") ? "scale(0.9)" : null
+                    }}
                 />
             )}
         </Tooltip>
@@ -96,6 +101,10 @@ const GlobalBadges = ({ userId }: { userId: string; }) => {
             const cleanName = badge.name.replace(mod, "").trim();
             const prefix = showPrefix() ? mod : "";
             if (!badge.custom) badge.name = `${prefix} ${cleanName.charAt(0).toUpperCase() + cleanName.slice(1)}`;
+            if (badge.custom) {
+                if (cleanName.toLowerCase().includes(mod)) return;
+                else if (prefix) badge.name = `${cleanName} (${prefix})`.replaceAll(" ()", "");
+            }
             globalBadges.push(<BadgeComponent name={badge.name} img={badge.badge} />);
             badgeModal.push(<BadgeModalComponent name={badge.name} img={badge.badge} />);
         });

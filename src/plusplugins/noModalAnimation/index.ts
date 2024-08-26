@@ -2,7 +2,7 @@
  * Vencord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
- */
+*/
 
 import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
@@ -20,7 +20,7 @@ export default definePlugin({
             }
         },
         {
-            find: "BackdropStyles:function(){",
+            find: 'backdropFilter:"blur(0px)"',
             replacement: {
                 match: /\?0:300/,
                 replace: "?0:0",

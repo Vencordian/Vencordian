@@ -2,7 +2,7 @@
  * Vencord, a Discord client mod
  * Copyright (c) 2024 nin0dev
  * SPDX-License-Identifier: GPL-3.0-or-later
- */
+*/
 
 import "./style.css";
 
@@ -32,7 +32,7 @@ function getMembersInRole(roleId: string, guildId: string) {
 
 export default definePlugin({
     name: "InRole",
-    description: "Know who is in a role with the role context menu or /inrole command (read plugin info!)",
+    description: "Know who has a role with the role context menu or /inrole command (read plugin info!)",
     authors: [Devs.nin0dev],
     dependencies: ["UserSettingsAPI"],
     start() {

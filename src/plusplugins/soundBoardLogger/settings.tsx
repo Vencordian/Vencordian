@@ -1,8 +1,8 @@
 /*
  * Vencord, a Discord client mod
- * Copyright (c) 2023 Vendicated and contributors
+ * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
- */
+*/
 
 import { definePluginSettings } from "@api/Settings";
 import { OptionType } from "@utils/types";
@@ -73,21 +73,18 @@ const settings = definePluginSettings({
             { label: ".wav", value: ".wav" },
         ],
     },
-    IconLocation: {
-        description: "choose where to show the SoundBoard Log icon (requires restart)",
-        type: OptionType.SELECT,
-        options: [
-            { label: "Toolbar", value: "toolbar", default: true },
-            { label: "Chat input", value: "chat" }
-        ],
-        restartNeeded: true
-    },
     OpenLogs: {
         type: OptionType.COMPONENT,
         description: "show the logs",
         component: () =>
             <Button color={Button.Colors.LINK} size={Button.Sizes.SMALL} onClick={openSoundBoardLog}>Open Logs</Button>
-    }
+    },
+    soundVolume: {
+        description: "How loud the toggle sound is (0 to disable)",
+        type: OptionType.SLIDER,
+        default: 0.5,
+        markers: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+    },
 });
 
 export default settings;

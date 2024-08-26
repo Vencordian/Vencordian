@@ -35,7 +35,8 @@
     gap: 0.25rem;
 }
 
-.vc-channeltabs-tab-container, .vc-channeltabs-bookmark-container  {
+.vc-channeltabs-tab-container,
+.vc-channeltabs-bookmark-container {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -248,11 +249,9 @@
     min-width: unset;
 }
 
-.vc-channeltabs-preview-tab > :is(
-.vc-channeltabs-emoji-container,
+.vc-channeltabs-preview-tab> :is(.vc-channeltabs-emoji-container,
 .vc-channeltabs-typing-indicator,
-[data-has-mention]
-) {
+[data-has-mention]) {
     display: none;
 }
 

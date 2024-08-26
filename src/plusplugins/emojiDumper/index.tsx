@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { addContextMenuPatch, findGroupChildrenByChildId, NavContextMenuPatchCallback, removeContextMenuPatch } from "@api/ContextMenu";
+import { findGroupChildrenByChildId, NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { Devs, SuncordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import { Menu } from "@webpack/common";
@@ -30,11 +30,9 @@ export default definePlugin({
         Devs.Samwich,
         SuncordDevs.Woosh,
     ],
-    start() {
-        addContextMenuPatch(["guild-context", "guild-header-popout"], Patch);
-    },
-    stop() {
-        removeContextMenuPatch(["guild-context", "guild-header-popout"], Patch);
+    contextMenus: {
+        "guild-context": Patch,
+        "guild-header-popout": Patch
     }
 });
 
