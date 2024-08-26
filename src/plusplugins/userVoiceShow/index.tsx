@@ -81,7 +81,7 @@ const VoiceChannelField = ErrorBoundary.wrap(({ user }: UserProps) => {
 
 export default definePlugin({
     name: "UserVoiceShow",
-    description: "Shows whether a User is currently in a voice channel somewhere in their profile",
+    description: "Shows users' voice activity information",
     authors: [Devs.LordElias, Devs.Johannes7k75],
     tags: ["voice", "activity"],
     settings,
