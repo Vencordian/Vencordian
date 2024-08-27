@@ -12,8 +12,8 @@ import Setting from "../Setting";
 import Switch from "../Switch";
 import { connect, hasManagerRole, isWSOpen, sendColorway, wsOpen } from "../../wsClient";
 import { generateCss, getPreset, gradientBase, gradientPresetIds } from "../../css";
-import { ColorwayCSS } from "plugins/discordColorways/colorwaysAPI";
-import { colorToHex } from "plugins/discordColorways/utils";
+import { ColorwayCSS } from "plusplugins/discordColorways/colorwaysAPI";
+import { colorToHex } from "plusplugins/discordColorways/utils";
 
 export default function ({
     hasTheme = false
