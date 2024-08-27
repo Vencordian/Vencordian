@@ -2,7 +2,7 @@
  * Vencord, a Discord client mod
  * Copyright (c) 2024 sadan
  * SPDX-License-Identifier: GPL-3.0-or-later
- */
+*/
 
 import { closeModal, ModalContent, ModalHeader, ModalRoot, openModalLazy } from "@utils/modal";
 import { Button, Menu, Slider, TextInput, useState } from "@webpack/common";
@@ -93,7 +93,7 @@ export function makeContextItem(a: folderProp) {
             key="custom-folder-icons"
             label="Change Icon"
             action={() => {
-                openModalLazy(async () => {
+                openModalLazy(async() => {
                     return props => (
                         <ModalRoot {...props}>
                             <ModalHeader >

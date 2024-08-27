@@ -2,9 +2,8 @@
  * Vencord, a Discord client mod
  * Copyright (c) 2024 sadan
  * SPDX-License-Identifier: GPL-3.0-or-later
- */
+*/
 
-import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 import { makeContextItem } from "./components";
@@ -16,7 +15,10 @@ export default definePlugin({
     name: "CustomFolderIcons",
     description: "Customize folder icons with any png",
     authors: [
-        Devs.sadan
+    {
+        name: "sadan",
+        id: 521819891141967883n
+    }
     ],
     patches: [
         {
@@ -29,7 +31,7 @@ export default definePlugin({
     ],
     contextMenus: {
         "guild-context": (menuItems, props: folderProp) => {
-            if(!("folderId" in props)) return;
+            if (!("folderId" in props)) return;
             menuItems.push(makeContextItem(props));
         }
     },
@@ -38,7 +40,7 @@ export default definePlugin({
     },
     replace(props: any){
         const folderSettings = (settings.store.folderIcons as folderIconsData);
-        if(folderSettings && folderSettings[props.folderNode.id]){
+        if (folderSettings && folderSettings[props.folderNode.id]){
             const data = folderSettings[props.folderNode.id];
             return (
                 <div
