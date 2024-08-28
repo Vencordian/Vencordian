@@ -10,9 +10,9 @@ body:
 
         **You will be blocked from opening further requests if you don't follow these rules.**
         
-        Before opening a request, make sure a someone didn't already request the plugin to be added.
+        Before making a request, make sure someone didn't already request the plugin to be added.
 
-        Set the title of the request as the name of the plugin.
+        Put the name of the plugin as the title of the request.
 
         Skip formalities like "hello" and do not use AI to "spice up" your request. Keep it short and concise, with only the information necessary.
         ## One request per issue
@@ -51,7 +51,7 @@ body:
       options:
         - label: I have read the above and made sure my plugin request is clear and concise.
           required: true
-        - label: "I have checked the [existing plugins in Vencord](https://vencord.dev/plugins) and the [existing plugins in Vencord+](https://github.com/RobinRMC/VencordPlus/tree/main/src/plusplugins) and made sure the plugin I want to request hasn't already been added."
+        - label: "I have checked the [existing plugins in Vencord](https://vencord.dev/plugins) and the [existing plugins in Vencord+](https://github.com/RobinRMC/VencordPlus/tree/main/src/plusplugins) and made sure the plugin I want to request hasn't already be added."
           required: true
         - label: "I have searched the [existing plugin requests](https://github.com/RobinRMC/VencordPlus/issues?q=is%3Aissue+label%3AAddition) and made sure the plugin I want to request hasn't already been requested."
           required: true
