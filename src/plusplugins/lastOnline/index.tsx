@@ -42,7 +42,7 @@ function formatTime(time: number) {
 
 export default definePlugin({
     name: "LastOnline",
-    description: "Adds a last online indicator under usernames in your DM list and guild and GDM member list.",
+    description: "Adds a last online indicator under usernames in your DM list and guild and GDM member list",
     authors: [
         {
             id: 644298972420374528n,
@@ -77,19 +77,16 @@ export default definePlugin({
         return presenceStatus && presenceStatus.hasBeenOnline && presenceStatus.lastOffline !== null;
     },
     buildRecentlyOffline(user: User) {
-        const subTextClass = findByProps("subText");
-        const activityClass = findByProps("memberInner", "activity", "activityText");
+        const activityClass = findByProps("interactiveSelected", "interactiveSystemDM", "activity", "activityText", "subtext");
 
         const presenceStatus = recentlyOnlineList.get(user.id);
         const formattedTime = presenceStatus && presenceStatus.lastOffline !== null
             ? formatTime(presenceStatus.lastOffline)
             : "";
         return (
-            <div className={subTextClass.subText}>
-                <div className={activityClass.activity}>
-                    <div className={activityClass.activityText}>
-                        Online <strong>{formattedTime} ago</strong>
-                    </div>
+            <div className={activityClass.activity}>
+                <div className={activityClass.activityText}>
+                    <>Online <strong>{formattedTime} ago</strong></>
                 </div>
             </div>
         );

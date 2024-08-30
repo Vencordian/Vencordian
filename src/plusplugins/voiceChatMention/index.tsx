@@ -4,7 +4,6 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { Devs } from "@utils/constants";
 import { insertTextIntoChatInputBox } from "@utils/discord";
 import definePlugin from "@utils/types";
 import { findByPropsLazy } from "@webpack";
@@ -24,7 +23,7 @@ async function getVoiceChannelMentions(channel: Channel) {
 
 export default definePlugin({
     name: "VoiceChatMention",
-    description: "Adds a context menu button to put mentions of all users in a voice chat in the text box.",
+    description: "Adds a context menu button to put mentions of all of the users in a voice chat (except yourself) in the text box",
     authors: [
         {
             id: 644298972420374528n,
