@@ -2,7 +2,7 @@
  * Vencord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
-*/
+ */
 
 import { definePluginSettings } from "@api/Settings";
 import { OptionType } from "@utils/types";
@@ -12,7 +12,7 @@ import { openSoundBoardLog } from "./components/SoundBoardLog";
 
 const settings = definePluginSettings({
     SavedIds: {
-        description: "The amount of soundboard ids you want to save at a time (0 lets you save infinite)",
+        description: "The amount of soundboard IDs that you want to save at a time (0 lets you save infinite)",
         type: OptionType.COMPONENT,
         component: ({ setValue, setError }) => {
             const value = settings.store.SavedIds ?? 50;
@@ -49,7 +49,7 @@ const settings = definePluginSettings({
 
             return (
                 <Forms.FormSection>
-                    <Forms.FormTitle>The amount of soundboard ids you want to save at a time (0 lets you save infinite)</Forms.FormTitle>
+                    <Forms.FormTitle>The amount of soundboard IDs that you want to save at a time (0 lets you save infinite)</Forms.FormTitle>
                     <TextInput
                         type="number"
                         pattern="-?[0-9]+"
@@ -65,7 +65,7 @@ const settings = definePluginSettings({
 
     },
     FileType: {
-        description: "the format that you want to save your file",
+        description: "The format that you want to save the file in",
         type: OptionType.SELECT,
         options: [
             { label: ".ogg", value: ".ogg", default: true },
@@ -84,6 +84,15 @@ const settings = definePluginSettings({
         type: OptionType.SLIDER,
         default: 0.5,
         markers: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+    },
+    IconLocation: {
+        description: "Where to show the soundboard log icon (requires restart)",
+        type: OptionType.SELECT,
+        options: [
+            { label: "Toolbar", value: "toolbar", default: true },
+            { label: "Chat input", value: "chat" }
+        ],
+        restartNeeded: true
     },
 });
 
