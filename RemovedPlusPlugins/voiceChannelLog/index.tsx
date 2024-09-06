@@ -114,7 +114,7 @@ let clientOldChannelId: string | undefined;
 
 export default definePlugin({
     name: "VoiceChannelLog",
-    description: "Logs who joins and leaves voice channels",
+    description: "Log who joins and leaves voice channels",
     authors: [Devs.Sqaaakoi],
     settings,
     flux: {
@@ -149,12 +149,12 @@ export default definePlugin({
                     // empty string is to make type checker shut up
                     const targetChannelId = oldChannelId || channelId || "";
                     const selfInChannel = SelectedChannelStore.getVoiceChannelId() === targetChannelId;
-                    sendVoiceStatusMessage(targetChannelId, `${(channelId ? "Joined" : "Left")} <#${targetChannelId}>`, userId, selfInChannel);
+                    sendVoiceStatusMessage(targetChannelId, `${(channelId ? "has joined" : "has left")} <#${targetChannelId}>`, userId, selfInChannel);
                 }
                 // Move between channels
                 if (oldChannelId && channelId) {
-                    sendVoiceStatusMessage(oldChannelId, `Moved to <#${channelId}>`, userId, SelectedChannelStore.getVoiceChannelId() === oldChannelId);
-                    sendVoiceStatusMessage(channelId, `Moved from <#${oldChannelId}>`, userId, SelectedChannelStore.getVoiceChannelId() === channelId);
+                    sendVoiceStatusMessage(oldChannelId, `has moved to <#${channelId}>`, userId, SelectedChannelStore.getVoiceChannelId() === oldChannelId);
+                    sendVoiceStatusMessage(channelId, `has moved from <#${oldChannelId}>`, userId, SelectedChannelStore.getVoiceChannelId() === channelId);
                 }
 
             });

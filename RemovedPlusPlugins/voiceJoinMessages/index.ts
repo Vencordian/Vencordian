@@ -18,12 +18,12 @@ const SortedVoiceStateStore = findByPropsLazy("getVoiceStatesForChannel");
 const settings = definePluginSettings({
     friendDirectMessages: {
         type: OptionType.BOOLEAN,
-        description: "Recieve notifications in your friends' DMs when they join a voice channel",
+        description: "Receive notifications in your friends' DMs when they join a voice channel",
         default: true
     },
     friendDirectMessagesShowMembers: {
         type: OptionType.BOOLEAN,
-        description: "Show a list of other members in the voice channel when recieving a DM notification of your friend joining a voice channel",
+        description: "Show a list of other members in the voice channel when receiving a DM notification of your friend joining a voice channel",
         default: true
     },
     friendDirectMessagesShowMemberCount: {
@@ -33,22 +33,22 @@ const settings = definePluginSettings({
     },
     friendDirectMessagesSelf: {
         type: OptionType.BOOLEAN,
-        description: "Recieve notifications in your friends' DMs even if you are in the same voice channel as them",
+        description: "Receive notifications in your friends' DMs, even if you are in the same voice channel as them",
         default: false
     },
     friendDirectMessagesSilent: {
         type: OptionType.BOOLEAN,
-        description: "Join messages in your friends DMs will be silent",
+        description: "Join messages in your friends' DMs will be silent",
         default: false
     },
     allowedFriends: {
         type: OptionType.STRING,
-        description: "Comma or space separated list of friends' user IDs you want to recieve join messages from",
+        description: "Comma or space separated list of friends' user IDs you want to receive join messages from",
         default: ""
     },
     ignoreBlockedUsers: {
         type: OptionType.BOOLEAN,
-        description: "Do not send messages about blocked users joining/leaving/moving voice channels",
+        description: "Do not send messages about blocked users joining voice channels",
         default: true
     },
 });
@@ -142,7 +142,7 @@ export default definePlugin({
                         }
                     }
                     const dmChannelId = ChannelStore.getDMFromUserId(userId);
-                    if (dmChannelId && (selfInChannel ? settings.store.friendDirectMessagesSelf : true)) sendVoiceStatusMessage(dmChannelId, `Joined voice channel <#${channelId}>${memberListContent}`, userId);
+                    if (dmChannelId && (selfInChannel ? settings.store.friendDirectMessagesSelf : true)) sendVoiceStatusMessage(dmChannelId, `has joined voice channel <#${channelId}>${memberListContent}`, userId);
                 }
             });
         },
