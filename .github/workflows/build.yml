@@ -1,4 +1,4 @@
-name: DevBuild
+name: DevBuilds
 
 permissions:
     contents: write
