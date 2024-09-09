@@ -2,14 +2,14 @@
     "name": "vencord",
     "private": "true",
     "version": "1.10.1",
-    "description": "Vencord+ is a fork of Vencord that adds unapproved plugins.",
-    "homepage": "https://github.com/RobinRMC/VencordPlus#readme",
+    "description": "Vencordian is a fork of Vencord that adds unapproved plugins.",
+    "homepage": "https://github.com/Vencordian/Vencordian#readme",
     "bugs": {
-        "url": "https://github.com/RobinRMC/VencordPlus/issues"
+        "url": "https://github.com/Vencordian/Vencordian/issues"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/RobinRMC/VencordPlus.git"
+        "url": "git+https://github.com/Vencordian/Vencordian.git"
     },
     "license": "GPL-3.0-or-later",
     "author": "Vendicated",

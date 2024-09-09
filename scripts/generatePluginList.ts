@@ -236,7 +236,7 @@ function parsePlusDevs() {
 
 
 
-        if (!isSatisfiesExpression(value) || !isObjectLiteralExpression(value.expression)) throw new Error("Failed to parse Vencord+ devs: not an object literal");
+        if (!isSatisfiesExpression(value) || !isObjectLiteralExpression(value.expression)) throw new Error("Failed to parse Vencordian devs: not an object literal");
 
 
 
@@ -248,7 +248,7 @@ function parsePlusDevs() {
 
 
 
-            if (!isObjectLiteralExpression(value)) throw new Error(`Failed to parse Vencord+ devs: ${name} is not an object literal`);
+            if (!isObjectLiteralExpression(value)) throw new Error(`Failed to parse Vencordian devs: ${name} is not an object literal`);
 
 
 
@@ -296,7 +296,7 @@ function parsePlusMts() {
 
 
 
-        if (!isSatisfiesExpression(value) || !isObjectLiteralExpression(value.expression)) throw new Error("Failed to parse Vencord+ mts: not an object literal");
+        if (!isSatisfiesExpression(value) || !isObjectLiteralExpression(value.expression)) throw new Error("Failed to parse Vencordian mts: not an object literal");
 
 
 
@@ -308,7 +308,7 @@ function parsePlusMts() {
 
 
 
-            if (!isObjectLiteralExpression(value)) throw new Error(`Failed to parse Vencord+ mts: ${name} is not an object literal`);
+            if (!isObjectLiteralExpression(value)) throw new Error(`Failed to parse Vencordian mts: ${name} is not an object literal`);
 
 
 

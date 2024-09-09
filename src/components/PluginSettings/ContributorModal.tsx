@@ -60,7 +60,7 @@ function ContributorModal({ user }: { user: User; }) {
             .sort((a, b) => Number(a.required ?? false) - Number(b.required ?? false));
     }, [user.id, user.username]);
 
-    const ContributedHyperLink = <Link href="https://github.com/RobinRMC/VencordPlus">contributed</Link>;
+    const ContributedHyperLink = <Link href="https://github.com/Vencordian/Vencordian">contributed</Link>;
 
     return (
         <>
@@ -94,7 +94,7 @@ function ContributorModal({ user }: { user: User; }) {
                 </Forms.FormText>
             ) : (
                 <Forms.FormText>
-                    {user.username} has not made any plugins. They likely {ContributedHyperLink} to Vencord+ in other ways!
+                    {user.username} has not made any plugins. They likely {ContributedHyperLink} to Vencordian in other ways!
                 </Forms.FormText>
             )}
 

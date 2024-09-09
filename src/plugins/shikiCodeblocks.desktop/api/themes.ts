@@ -29,6 +29,8 @@ export const themes = {
     // Dev Choices
     MaterialCandy: "https://raw.githubusercontent.com/millsp/material-candy/master/material-candy.json",
 
+    // Catppuccin
+    CatppucinMocha: "https://raw.githubusercontent.com/shikijs/textmate-grammars-themes/main/packages/tm-themes/themes/catppuccin-mocha.json",
     // More from Shiki repo
     DraculaSoft: shikiRepoTheme("dracula-soft"),
     Dracula: shikiRepoTheme("dracula"),

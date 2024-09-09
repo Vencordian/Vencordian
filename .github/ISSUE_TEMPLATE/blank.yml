@@ -7,7 +7,7 @@ body:
       value: |
         # READ THIS BEFORE OPENING AN ISSUE
 
-        Do not use this template to request a plugin to be added to Vencord+.
+        Do not use this template to request a plugin to be added to Vencordian.
 
   - type: textarea
     id: content

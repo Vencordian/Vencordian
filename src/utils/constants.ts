@@ -802,8 +802,8 @@ export const PlusDevs = /* #__PURE__*/ Object.freeze({
 } satisfies Record<string, Dev>);
 
 export const PlusMts = /* #__PURE__*/ Object.freeze({
-    RobinRMC: {
-        name: "RobinRMC",
+    Vencordian: {
+        name: "Vencordian",
         id: 304932282475479051n
     }
 } satisfies Record<string, Dev>);

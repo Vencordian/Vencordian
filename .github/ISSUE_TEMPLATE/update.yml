@@ -1,5 +1,5 @@
 name: Request update
-description: Create a request for a plugin added to Vencord+ to be updated.
+description: Create a request for a plugin added to Vencordian to be updated.
 labels: [Update]
 
 body:

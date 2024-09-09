@@ -1,5 +1,5 @@
 name: Bug/Crash Report
-description: Create a bug or crash report for Vencord+.
+description: Create a bug or crash report for Vencordian.
 labels: [Bug]
 
 body:

@@ -1,5 +1,5 @@
 > [!WARNING]  
-> These instructions are only for advanced users. If you're not a Developer, you should use our [graphical installer](https://github.com/RobinRMC/VencordPlusInstaller#usage) instead.  
+> These instructions are only for advanced users. If you're not a Developer, you should use our [graphical installer](https://github.com/Vencordian/VencordianInstaller#usage) instead.  
 > No support will be provided for installing in this fashion. If you cannot figure it out, you should just stick to a regular install.  
 
 # Installation Guide
@@ -35,8 +35,8 @@ npm i -g pnpm
 Clone Vencord:
 
 ```shell
-git clone https://github.com/RobinRMC/VencordPlus
-cd VencordPlus
+git clone https://github.com/Vencordian/Vencordian
+cd Vencordian
 ```
 
 Install dependencies:

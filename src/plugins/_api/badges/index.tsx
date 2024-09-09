@@ -62,7 +62,7 @@ const EquicordContributorBadge: ProfileBadge = {
 };
 
 const PlusContributorBadge: ProfileBadge = {
-    description: "Vencord+ Contributor",
+    description: "Vencordian Contributor",
     image: PLUS_CONTRIBUTOR_BADGE,
     position: BadgePosition.START,
     shouldShow: ({ userId }) => isPlusPluginDev(userId),
@@ -70,7 +70,7 @@ const PlusContributorBadge: ProfileBadge = {
 };
 
 const PlusMaintainerBadge: ProfileBadge = {
-    description: "Vencord+ Maintainer",
+    description: "Vencordian Maintainer",
     image: PLUS_MAINTAINER_BADGE,
     position: BadgePosition.START,
     shouldShow: ({ userId }) => isPlusMt(userId),

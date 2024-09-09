@@ -1,4 +1,4 @@
-# Vencord+
+# Vencordian
 
 A fork of the Discord client mod called Vencord that adds unapproved plugins.
 
@@ -20,22 +20,22 @@ A fork of the Discord client mod called Vencord that adds unapproved plugins.
 -   Settings sync: Keep your plugins and their settings synchronised between devices / apps (optional)
 
 
-## Additional (unofficial) plugins [Vencord+]
+## Additional (unofficial) plugins [Vencordian]
 
-[Click here to see a list of the unapproved plugins Vencord+ makes available to you.](https://github.com/RobinRMC/VencordPlus/tree/main/src/plusplugins)
+[Click here to see a list of the unapproved plugins Vencordian makes available to you.](https://github.com/Vencordian/Vencordian/tree/main/src/plusplugins)
 
 
 ## Installing / Uninstalling
 
-[![Download and run the installer](https://img.shields.io/github/v/release/RobinRMC/VencordPlusInstaller?label=Download%20Vencord%2B%20Installer&style=for-the-badge)](https://github.com/RobinRMC/VencordPlusInstaller#vencord-installer)
+[![Download and run the installer](https://img.shields.io/github/v/release/Vencordian/VencordianInstaller?label=Download%20Vencord%2B%20Installer&style=for-the-badge)](https://github.com/Vencordian/VencordianInstaller#vencord-installer)
 
-[![Download and install Vesktop+](https://img.shields.io/github/v/release/RobinRMC/VesktopPlus?label=Download%20Vesktop%2B&style=for-the-badge)](https://github.com/RobinRMC/VesktopPlus#installing-vesktop)
+[![Download and install Vesktop+](https://img.shields.io/github/v/release/Vencordian/VesktopPlus?label=Download%20Vesktop%2B&style=for-the-badge)](https://github.com/Vencordian/VesktopPlus#installing-vesktop)
 
 ## Join the support/community server of Vencord
 
 https://discord.gg/D9uwnFnqmd
 
-Note: Do not request support in the Discord server of Vencord for anything regarding Vencord+!
+Note: Do not request support in the Discord server of Vencord for anything regarding Vencordian!
 
 ## Sponsors of Vencord
 
@@ -47,11 +47,11 @@ Note: Do not request support in the Discord server of Vencord for anything regar
 
 ## Star History
 
-<a href="https://star-history.com/#RobinRMC/VencordPlus&Timeline">
+<a href="https://star-history.com/#Vencordian/Vencordian&Timeline">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=RobinRMC/VencordPlus&type=Timeline&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=RobinRMC/VencordPlus&type=Timeline" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=RobinRMC/VencordPlus&type=Timeline" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Vencordian/Vencordian&type=Timeline&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Vencordian/Vencordian&type=Timeline" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Vencordian/Vencordian&type=Timeline" />
   </picture>
 </a>
 
@@ -67,7 +67,7 @@ Client modifications are against Discord’s Terms of Service.
 
 However, Discord is pretty indifferent about them and there are no known cases of users getting banned for using client mods! So you should generally be fine as long as you don’t use any plugins that implement abusive behaviour. You should know what a plugin does and configure it properly before using it.
 
-Regardless, if your account is very important to you and it getting disabled would be a disaster for you, you should probably not use any client mods (not exclusive to Vencord+ or Vencord), just to be safe.
+Regardless, if your account is very important to you and it getting disabled would be a disaster for you, you should probably not use any client mods (not exclusive to Vencordian or Vencord), just to be safe.
 
 Additionally, make sure not to send screenshots and messages that expose that you are using a client mod.
 

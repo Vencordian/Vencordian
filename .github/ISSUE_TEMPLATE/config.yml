@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Vesktop+
-    url: https://github.com/RobinRMC/VesktopPlus
+    url: https://github.com/Vencordian/VesktopPlus
     about: You can find Vesktop+ here.
-  - name: Vencord+ Installer
+  - name: Vencordian Installer
     url: https://github.com/Vencord/Installer
-    about: You can find the Vencord+ installer here.
+    about: You can find the Vencordian installer here.

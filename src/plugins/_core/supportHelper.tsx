@@ -85,8 +85,8 @@ async function generateDebugInfoMessage() {
     })();
 
     const info = {
-        "Vencord+":
-            `v${VERSION} • [${gitHash}](<https://github.com/RobinRMC/VencordPlus/commit/${gitHash}>)` +
+        "Vencordian":
+            `v${VERSION} • [${gitHash}](<https://github.com/Vencordian/Vencordian/commit/${gitHash}>)` +
             `${SettingsPlugin.additionalInfo} - ${Intl.DateTimeFormat("en-GB", { dateStyle: "medium" }).format(BUILD_TIMESTAMP)}`,
         Client: `${RELEASE_CHANNEL} ~ ${client}`,
         Platform: window.navigator.platform
@@ -157,13 +157,13 @@ export default definePlugin({
     commands: [
         {
             name: "vencord-debug",
-            description: "Send Vencord+ debug info",
+            description: "Send Vencordian debug info",
             predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || isSuncordPluginDev(UserStore.getCurrentUser()?.id) || isEquicordPluginDev(UserStore.getCurrentUser()?.id) || isPlusPluginDev(UserStore.getCurrentUser()?.id) || isPlusMt(UserStore.getCurrentUser()?.id) || AllowedChannelIds.includes(ctx.channel.id),
             execute: async () => ({ content: await generateDebugInfoMessage() })
         },
         {
             name: "vencord-plugins",
-            description: "Send Vencord+ plugin list",
+            description: "Send Vencordian plugin list",
             predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || isSuncordPluginDev(UserStore.getCurrentUser()?.id) || isEquicordPluginDev(UserStore.getCurrentUser()?.id) || isPlusPluginDev(UserStore.getCurrentUser()?.id) || isPlusMt(UserStore.getCurrentUser()?.id) || AllowedChannelIds.includes(ctx.channel.id),
             execute: () => ({ content: generatePluginList() })
         }
@@ -183,7 +183,7 @@ export default definePlugin({
                     return Alerts.show({
                         title: "Hold on!",
                         body: <div>
-                            <Forms.FormText>You are using an outdated version of Vencord+! Chances are your issue is already fixed.</Forms.FormText>
+                            <Forms.FormText>You are using an outdated version of Vencordian! Chances are your issue is already fixed.</Forms.FormText>
                             <Forms.FormText className={Margins.top8}>
                                 Please update before asking for support!
                             </Forms.FormText>
@@ -207,10 +207,10 @@ export default definePlugin({
                     body: <div>
                         <Forms.FormText>You are using an externally updated Vencord version, which we do not provide support for!</Forms.FormText>
                         <Forms.FormText className={Margins.top8}>
-                            If you are experiencing issues, please contact your <Link href="https://github.com/RobinRMC/VencordPlus">package maintainer</Link> for support instead.
+                            If you are experiencing issues, please contact your <Link href="https://github.com/Vencordian/Vencordian">package maintainer</Link> for support instead.
                         </Forms.FormText>
                     </div>,
-                    onCloseCallback: () => {}
+                    onCloseCallback: () => { }
                 });
             }
 
@@ -221,7 +221,7 @@ export default definePlugin({
                         <Forms.FormText>You are using a custom build of Vencord, which we do not provide support for!</Forms.FormText>
 
                         <Forms.FormText className={Margins.top8}>
-                            If you are experiencing issues, please contact your <Link href="https://github.com/RobinRMC/VencordPlus">package maintainer</Link> for support instead.
+                            If you are experiencing issues, please contact your <Link href="https://github.com/Vencordian/Vencordian">package maintainer</Link> for support instead.
                         </Forms.FormText>
 
                         <Text variant="text-md/bold" className={Margins.top8}>You will be banned from receiving support if you ignore this rule.</Text>
