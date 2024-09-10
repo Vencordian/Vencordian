@@ -18,9 +18,9 @@
 
 import { ILanguageRegistration } from "@vap/shiki";
 
-export const VPC_REPO = "Vap0r1ze/vapcord";
-export const VPC_REPO_COMMIT = "88a7032a59cca40da170926651b08201ea3b965a";
-export const vpcRepoAssets = `https://raw.githubusercontent.com/${VPC_REPO}/${VPC_REPO_COMMIT}/assets/shiki-codeblocks`;
+export const VPC_REPO = "Vencordian/grammars";
+export const VPC_REPO_COMMIT = "main";
+export const vpcRepoAssets = `https://raw.githubusercontent.com/${VPC_REPO}/${VPC_REPO_COMMIT}/assets`;
 export const vpcRepoGrammar = (fileName: string) => `${vpcRepoAssets}/${fileName}`;
 export const vpcRepoLanguages = `${vpcRepoAssets}/languages.json`;
 
