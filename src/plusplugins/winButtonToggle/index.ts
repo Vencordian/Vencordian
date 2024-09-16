@@ -24,7 +24,7 @@ export default definePlugin({
     name: "WinButtonToggle",
     description: "Toggles win buttons on and off to make your Discord look cleaner",
     authors: [Devs.JW],
-    enabledByDefault: true,
+    enabledByDefault: false,
 
     onKey(e: KeyboardEvent) {
         const hasCtrl = e.ctrlKey;
@@ -33,11 +33,10 @@ export default definePlugin({
             switch (e.key) {
                 case "x":
                 case "X":
-                    document.querySelectorAll(".winButton_a934d6").forEach(btn => {
-                        if (btn instanceof HTMLElement) {
-                            const currentOpacity = btn.style.opacity || '1';
-                            btn.style.setProperty('opacity', currentOpacity === '0' ? '1' : '0');
-                        }
+                    document.querySelectorAll(".platform-win .winButton_a934d8").forEach(btn => {
+                        const btnFixed = btn as HTMLElement;
+                        const currentOpacity = btnFixed.style.opacity || '1';
+                        btnFixed.style.opacity = currentOpacity === '0' ? '1' : '0';
                     });
                     break;
                 default:
