@@ -37,13 +37,18 @@ export const Devs = /* #__PURE__*/ Object.freeze({
         name: "Nobody",
         id: 0n
     },
+    JW: {
+        name: "jw0902",
+        id: 780493281552760862n
+    },
     Ven: {
         name: "Vee",
         id: 343383572805058560n
     },
     Arjix: {
         name: "ArjixWasTaken",
-        id: 674710789138939916n
+        id: 674710789138939916n,
+        badge: false
     },
     Cyn: {
         name: "Cynosphere",
@@ -569,6 +574,10 @@ export const Devs = /* #__PURE__*/ Object.freeze({
     niko: {
         name: "niko",
         id: 341377368075796483n
+    },
+    relitrix: {
+        name: "Relitrix",
+        id: 423165393901715456n,
     },
     RamziAH: {
         name: "RamziAH",
