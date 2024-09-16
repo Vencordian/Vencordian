@@ -11,6 +11,7 @@ A fork of the Discord client mod called Vencord that adds unapproved plugins.
 -   Super easy to install (Download Installer, open, click install button, done)
 -   100+ plugins built in: [See a list](https://vencord.dev/plugins)
     -   Some highlights: SpotifyControls, MessageLogger, Experiments, GameActivityToggle, Translate, NoTrack, QuickReply, Free Emotes/Stickers, PermissionsViewer, CustomCommands, ShowHiddenChannels, PronounDB
+-   100+ plus plugins: [See a list](https://github.com/Vencordian/Vencordian/tree/main/src/plusplugins)
 -   Fairly lightweight despite the many inbuilt plugins
 -   Excellent Browser Support: Run Vencord in your Browser via extension or UserScript
 -   Works on any Discord branch: Stable, Canary or PTB all work (though for the best experience I recommend stable!)
