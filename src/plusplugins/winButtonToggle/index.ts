@@ -35,8 +35,8 @@ export default definePlugin({
                 case "X":
                     document.querySelectorAll(".platform-win .winButton_a934d8").forEach(btn => {
                         const btnFixed = btn as HTMLElement;
-                        const currentOpacity = btnFixed.style.opacity || '1';
-                        btnFixed.style.opacity = currentOpacity === '0' ? '1' : '0';
+                        const currentDisplay = btnFixed.style.display || 'flex';
+                        btnFixed.style.display = currentDisplay === 'flex' ? 'none' : 'flex';
                     });
                     break;
                 default:
