@@ -173,6 +173,11 @@ export interface NavigationRouter {
     transitionToGuild(guildId: string, ...args: unknown[]): void;
 }
 
+export interface ChannelRouter {
+    transitionToChannel: (channelId: string) => void;
+    transitionToThread: (channel: Channel) => void;
+}
+
 export interface IconUtils {
     getUserAvatarURL(user: User, canAnimate?: boolean, size?: number, format?: string): string;
     getDefaultAvatarURL(id: string, discriminator?: string): string;

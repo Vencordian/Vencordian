@@ -16,157 +16,174 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import "./style.css";
-
-import { NavContextMenuPatchCallback } from "@api/ContextMenu";
+import { definePluginSettings } from "@api/Settings";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { NotesIcon, OpenExternalIcon } from "@components/Icons";
+import { makeRange } from "@components/PluginSettings/components";
 import { Devs } from "@utils/constants";
-import { classes } from "@utils/misc";
-import definePlugin from "@utils/types";
-import { findByPropsLazy } from "@webpack";
-import { Alerts, Button, Menu, Parser, TooltipContainer } from "@webpack/common";
-import { Guild, User } from "discord-types/general";
+import definePlugin, { OptionType } from "@utils/types";
+import { findByCodeLazy } from "@webpack";
+import { ChannelStore, GuildMemberStore, GuildStore } from "@webpack/common";
 
-import { Auth, initAuth, updateAuth } from "./auth";
-import { openReviewsModal } from "./components/ReviewModal";
-import { NotificationType, ReviewType } from "./entities";
-import { getCurrentUserInfo, readNotification } from "./reviewDbApi";
-import { settings } from "./settings";
-import { showToast } from "./utils";
+const useMessageAuthor = findByCodeLazy('"Result cannot be null because the message is not null"');
 
-const RoleButtonClasses = findByPropsLazy("button", "buttonInner", "icon", "banner");
+const settings = definePluginSettings({
+    chatMentions: {
+        type: OptionType.BOOLEAN,
+        default: true,
+        description: "Show role colors in chat mentions (including in the message box)",
+        restartNeeded: true
+    },
+    memberList: {
+        type: OptionType.BOOLEAN,
+        default: true,
+        description: "Show role colors in member list role headers",
+        restartNeeded: true
+    },
+    voiceUsers: {
+        type: OptionType.BOOLEAN,
+        default: true,
+        description: "Show role colors in the voice chat user list",
+        restartNeeded: true
+    },
+    reactorsList: {
+        type: OptionType.BOOLEAN,
+        default: true,
+        description: "Show role colors in the reactors list",
+        restartNeeded: true
+    },
+    colorChatMessages: {
+        type: OptionType.BOOLEAN,
+        default: false,
+        description: "Color chat messages based on the author's role color",
+        restartNeeded: true,
+    },
+    messageSaturation: {
+        type: OptionType.SLIDER,
+        description: "Intensity of message coloring.",
+        markers: makeRange(0, 100, 10),
+        default: 30,
+        restartNeeded: true
+    },
+});
 
-const guildPopoutPatch: NavContextMenuPatchCallback = (children, { guild }: { guild: Guild, onClose(): void; }) => {
-    if (!guild) return;
-    children.push(
-        <Menu.MenuItem
-            label="View Reviews"
-            id="vc-rdb-server-reviews"
-            icon={OpenExternalIcon}
-            action={() => openReviewsModal(guild.id, guild.name, ReviewType.Server)}
-        />
-    );
-};
-
-const userContextPatch: NavContextMenuPatchCallback = (children, { user }: { user?: User, onClose(): void; }) => {
-    if (!user) return;
-    children.push(
-        <Menu.MenuItem
-            label="View Reviews"
-            id="vc-rdb-user-reviews"
-            icon={OpenExternalIcon}
-            action={() => openReviewsModal(user.id, user.username, ReviewType.User)}
-        />
-    );
-};
 
 export default definePlugin({
-    name: "ReviewDB",
-    description: "Review other users (Adds a new settings to profiles)",
-    authors: [Devs.mantikafasi, Devs.Ven],
-
-    settings,
-    contextMenus: {
-        "guild-header-popout": guildPopoutPatch,
-        "guild-context": guildPopoutPatch,
-        "user-context": userContextPatch,
-        "user-profile-actions": userContextPatch,
-        "user-profile-overflow-menu": userContextPatch
-    },
-
+    name: "RoleColorEverywhere",
+    authors: [Devs.KingFish, Devs.lewisakura, Devs.AutumnVN, Devs.Kyuuhachi],
+    description: "Adds the top role color anywhere possible",
     patches: [
+        // Chat Mentions
         {
-            find: ".BITE_SIZE,user:",
-            replacement: {
-                match: /{profileType:\i\.\i\.BITE_SIZE,children:\[/,
-                replace: "$&$self.BiteSizeReviewsButton({user:arguments[0].user}),"
-            }
-        },
-        {
-            find: ".FULL_SIZE,user:",
-            replacement: {
-                match: /{profileType:\i\.\i\.FULL_SIZE,children:\[/,
-                replace: "$&$self.BiteSizeReviewsButton({user:arguments[0].user}),"
-            }
-        },
-        {
-            find: ".PANEL,isInteractionSource:",
-            replacement: {
-                match: /{profileType:\i\.\i\.PANEL,children:\[/,
-                replace: "$&$self.BiteSizeReviewsButton({user:arguments[0].user}),"
-            }
-        }
-    ],
-
-    flux: {
-        CONNECTION_OPEN: initAuth,
-    },
-
-    async start() {
-        const s = settings.store;
-        const { lastReviewId, notifyReviews } = s;
-
-        await initAuth();
-
-        setTimeout(async () => {
-            if (!Auth.token) return;
-
-            const user = await getCurrentUserInfo(Auth.token);
-            updateAuth({ user });
-
-            if (notifyReviews) {
-                if (lastReviewId && lastReviewId < user.lastReviewID) {
-                    s.lastReviewId = user.lastReviewID;
-                    if (user.lastReviewID !== 0)
-                        showToast("You have new reviews on your profile!");
+            find: ".USER_MENTION)",
+            replacement: [
+                {
+                    match: /onContextMenu:\i,color:\i,\.\.\.\i(?=,children:)(?<=user:(\i),channel:(\i).{0,500}?)/,
+                    replace: "$&,color:$self.getUserColor($1?.id,{channelId:$2?.id})"
                 }
-            }
+            ],
+            predicate: () => settings.store.chatMentions,
+        },
+        // Slate
+        {
+            find: ".userTooltip,children",
+            replacement: [
+                {
+                    match: /let\{id:(\i),guildId:(\i)[^}]*\}.*?\.\i,{(?=children)/,
+                    replace: "$&color:$self.getUserColor($1,{guildId:$2}),"
+                }
+            ],
+            predicate: () => settings.store.chatMentions,
+        },
+        {
+            find: 'tutorialId:"whos-online',
+            replacement: [
+                {
+                    match: /null,\i," — ",\i\]/,
+                    replace: "null,$self.roleGroupColor(arguments[0])]"
+                },
+            ],
+            predicate: () => settings.store.memberList,
+        },
+        {
+            find: ".Messages.THREAD_BROWSER_PRIVATE",
+            replacement: [
+                {
+                    match: /children:\[\i," — ",\i\]/,
+                    replace: "children:[$self.roleGroupColor(arguments[0])]"
+                },
+            ],
+            predicate: () => settings.store.memberList,
+        },
+        {
+            find: "renderPrioritySpeaker",
+            replacement: [
+                {
+                    match: /renderName\(\){.+?usernameSpeaking\]:.+?(?=children)/,
+                    replace: "$&...$self.getVoiceProps(this.props),"
+                }
+            ],
+            predicate: () => settings.store.voiceUsers,
+        },
+        {
+            find: ".reactorDefault",
+            replacement: {
+                match: /,onContextMenu:e=>.{0,15}\((\i),(\i),(\i)\).{0,250}tag:"strong"/,
+                replace: "$&,style:{color:$self.getColor($2?.id,$1)}"
+            },
+            predicate: () => settings.store.reactorsList,
+        },
+        {
+            find: '.Messages.MESSAGE_EDITED,")"',
+            replacement: {
+                match: /(?<=isUnsupported\]:(\i)\.isUnsupported\}\),)(?=children:\[)/,
+                replace: "style:{color:$self.useMessageColor($1)},"
+            },
+            predicate: () => settings.store.colorChatMessages,
+        },
+    ],
+    settings,
 
-            if (user.notification) {
-                const props = user.notification.type === NotificationType.Ban ? {
-                    cancelText: "Appeal",
-                    confirmText: "Ok",
-                    onCancel: async () =>
-                        VencordNative.native.openExternal(
-                            "https://reviewdb.mantikafasi.dev/api/redirect?"
-                            + new URLSearchParams({
-                                token: Auth.token!,
-                                page: "dashboard/appeal"
-                            })
-                        )
-                } : {};
-
-                Alerts.show({
-                    title: user.notification.title,
-                    body: (
-                        Parser.parse(
-                            user.notification.content,
-                            false
-                        )
-                    ),
-                    ...props
-                });
-
-                readNotification(user.notification.id);
-            }
-        }, 4000);
+    getColor(userId: string, { channelId, guildId }: { channelId?: string; guildId?: string; }) {
+        if (!(guildId ??= ChannelStore.getChannel(channelId!)?.guild_id)) return null;
+        return GuildMemberStore.getMember(guildId, userId)?.colorString ?? null;
     },
 
-    BiteSizeReviewsButton: ErrorBoundary.wrap(({ user }: { user: User; }) => {
+    getUserColor(userId: string, ids: { channelId?: string; guildId?: string; }) {
+        const colorString = this.getColor(userId, ids);
+        return colorString && parseInt(colorString.slice(1), 16);
+    },
+
+    roleGroupColor: ErrorBoundary.wrap(({ id, count, title, guildId, label }: { id: string; count: number; title: string; guildId: string; label: string; }) => {
+        const role = GuildStore.getRole(guildId, id);
+
         return (
-            <TooltipContainer text="View Reviews">
-                <Button
-                    onClick={() => openReviewsModal(user.id, user.username, ReviewType.User)}
-                    look={Button.Looks.FILLED}
-                    size={Button.Sizes.NONE}
-                    color={RoleButtonClasses.bannerColor}
-                    className={classes(RoleButtonClasses.button, RoleButtonClasses.icon, RoleButtonClasses.banner)}
-                    innerClassName={classes(RoleButtonClasses.buttonInner, RoleButtonClasses.icon, RoleButtonClasses.banner)}
-                >
-                    <NotesIcon height={16} width={16} />
-                </Button>
-            </TooltipContainer>
+            <span style={{
+                color: role?.colorString,
+                fontWeight: "unset",
+                letterSpacing: ".05em"
+            }}>
+                {title ?? label} &mdash; {count}
+            </span>
         );
-    }, { noop: true })
+    }, { noop: true }),
+
+    getVoiceProps({ user: { id: userId }, guildId }: { user: { id: string; }; guildId: string; }) {
+        return {
+            style: {
+                color: this.getColor(userId, { guildId })
+            }
+        };
+    },
+
+    useMessageColor(message: any) {
+        try {
+            const { messageSaturation } = settings.use(["messageSaturation"]);
+            const author = useMessageAuthor(message);
+            if (author.colorString !== undefined && messageSaturation !== 0)
+                return `color-mix(in oklab, ${author.colorString} ${messageSaturation}%, var(--text-normal))`;
+        } catch (e) {
+            console.error("[RCE] failed to get message color", e);
+        }
+        return undefined;
+    },
 });
